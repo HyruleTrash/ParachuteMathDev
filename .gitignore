@@ -1,0 +1,2 @@
+out/build/Default/*
+!out/build/Default/*.dll
