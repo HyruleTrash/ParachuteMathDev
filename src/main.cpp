@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include "./Parachute/Game/Game.cpp"
 
 int main()
 {
@@ -6,10 +7,12 @@ int main()
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
+    Parachute::Game game{};
     while (window.isOpen())
     {
         while (const std::optional event = window.pollEvent())
         {
+            game.Update();
             if (event->is<sf::Event::Closed>())
                 window.close();
         }
