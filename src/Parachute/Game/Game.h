@@ -1,5 +1,6 @@
 #pragma once
 #include "../Time/Time.cpp"
+#include "../Object/ObjectManager.cpp"
 
 namespace Parachute
 {
@@ -10,5 +11,12 @@ namespace Parachute
         ~Game();
         void Update();
         Time time;
+        
+        enum GameState {
+            Start,
+            Playing,
+            Pauzed,
+            End
+        };
     };
 } // namespace Parachute

@@ -1,13 +1,13 @@
 #pragma once
-#include <SFML/System/Clock.hpp>
-#include <SFML/System/Time.hpp>
+#include <chrono>
 
 namespace Parachute
 {
     class Time
     {
     private:
-        sf::Clock* clock;
+        std::chrono::time_point<std::chrono::high_resolution_clock> startTime;
+        double runTime;
     public:
         Time();
         ~Time();
