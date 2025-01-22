@@ -10,7 +10,6 @@ Time::Time()
 
 Time::~Time()
 {
-    
 }
 
 void Time::Update()

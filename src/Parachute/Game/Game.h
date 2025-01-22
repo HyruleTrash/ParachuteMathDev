@@ -7,16 +7,18 @@ namespace Parachute
     class Game
     {
     public:
-        Game();
-        ~Game();
-        void Update();
-        Time time;
-        
-        enum GameState {
+        enum class GameState
+        {
             Start,
             Playing,
             Pauzed,
             End
         };
+        Game();
+        ~Game();
+        void Update();
+        Time time{};
+        GameState gameState{GameState::Start};
+        ObjectManager objectManager{};
     };
-} // namespace Parachute
+}

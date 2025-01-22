@@ -8,6 +8,7 @@ namespace Parachute
     private:
         std::chrono::time_point<std::chrono::high_resolution_clock> startTime;
         double runTime;
+
     public:
         Time();
         ~Time();

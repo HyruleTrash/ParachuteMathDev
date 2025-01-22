@@ -3,22 +3,19 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode({200, 200}), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    sf::RenderWindow window(sf::VideoMode({400, 400}), "Midnight Motorist");
 
     Parachute::Game game{};
     while (window.isOpen())
     {
+        window.clear();
+        game.Update();
         while (const std::optional event = window.pollEvent())
         {
-            game.Update();
             if (event->is<sf::Event::Closed>())
                 window.close();
         }
 
-        window.clear();
-        window.draw(shape);
         window.display();
     }
 }

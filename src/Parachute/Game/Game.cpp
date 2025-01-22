@@ -1,18 +1,22 @@
 #include "./Game.h"
-#include <iostream>
+#include "../Object/Body/StaticBody/StaticBody.cpp"
 
 using namespace Parachute;
 
 Game::Game()
 {
     time = Time();
+    // temp
+    StaticBody *body = new StaticBody();
+    objectManager.Initialize(body, Vector2{10, 10});
 }
 
 Game::~Game()
 {
 }
 
-void Game::Update(){
+void Game::Update()
+{
     time.Update();
-    std::cout << "delta: " << time.deltaTime << std::endl;
+    objectManager.Update();
 }
