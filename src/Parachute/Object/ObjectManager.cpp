@@ -1,3 +1,4 @@
+#pragma once
 #include "./ObjectManager.h"
 
 using namespace Parachute;

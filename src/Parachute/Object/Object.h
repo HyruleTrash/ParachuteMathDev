@@ -3,6 +3,8 @@
 
 namespace Parachute
 {
+    class Game;
+
     class Object
     {
     private:
@@ -11,6 +13,7 @@ namespace Parachute
         ~Object();
         virtual void Update() {};
         bool visable{true};
+        Game *game;
         Vector2 position{};
         Vector2 size{};
     };
