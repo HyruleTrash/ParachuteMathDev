@@ -1,12 +1,17 @@
 #pragma once
-#include "./Util.h"
+#include "./Vector2/Vector2.cpp"
 
-using namespace MathUtil;
+#pragma once
 
-Util::Util()
+namespace MathUtil
 {
-}
+    Vector2 Normalize(Vector2 a)
+    {
+        return a.Normalize();
+    }
 
-Util::~Util()
-{
+    double Dot(Vector2 a, Vector2 b)
+    {
+        return (a.x * b.x) + (a.y * b.y);
+    }
 }

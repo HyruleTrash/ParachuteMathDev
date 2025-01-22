@@ -1,14 +1,18 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include "./MathUtil/Util.cpp"
 #include "./Parachute/Game/Game.cpp"
 #include "./Parachute/Object/Body/StaticBody/StaticBody.cpp"
 
 int main()
 {
     Parachute::Game game{};
+
     Parachute::StaticBody *body = new Parachute::StaticBody();
     body->size = MathUtil::Vector2{10, 10};
     body->game = &game;
     game.objectManager.Initialize(body, MathUtil::Vector2{10, 10});
+
     while (game.window.isOpen())
     {
         game.window.clear();
