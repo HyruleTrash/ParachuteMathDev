@@ -12,7 +12,7 @@ Vector2::Vector2()
 Vector2::Vector2(Vector2 *other)
 {
     this->x = other->x;
-    this->y = other->x;
+    this->y = other->y;
 }
 
 Vector2::Vector2(double x, double y)
@@ -21,8 +21,21 @@ Vector2::Vector2(double x, double y)
     this->y = y;
 }
 
+Vector2::Vector2(float x, float y) : Vector2((double)x, (double)y)
+{
+}
+
+Vector2::Vector2(int x, int y) : Vector2((double)x, (double)y)
+{
+}
+
 Vector2::~Vector2()
 {
+}
+
+std::ostream &operator<<(std::ostream &os, const Vector2 &vec)
+{
+    return os << "[" << vec.x << ", " << vec.y << "]";
 }
 
 Vector2 &Vector2::operator=(const Vector2 &other)
@@ -59,17 +72,13 @@ Vector2 Vector2::operator*(const double &scalar)
 Vector2 Vector2::operator*(const float &scalar)
 {
     Vector2 result{this};
-    result.x *= scalar;
-    result.y *= scalar;
-    return result;
+    return result * (double)scalar;
 }
 
 Vector2 Vector2::operator*(const int &scalar)
 {
     Vector2 result{this};
-    result.x *= scalar;
-    result.y *= scalar;
-    return result;
+    return result * (double)scalar;
 }
 
 Vector2 Vector2::operator/(const double &scalar)
@@ -83,22 +92,13 @@ Vector2 Vector2::operator/(const double &scalar)
 Vector2 Vector2::operator/(const float &scalar)
 {
     Vector2 result{this};
-    result.x /= scalar;
-    result.y /= scalar;
-    return result;
+    return result / (double)scalar;
 }
 
 Vector2 Vector2::operator/(const int &scalar)
 {
     Vector2 result{this};
-    result.x /= scalar;
-    result.y /= scalar;
-    return result;
-}
-
-std::ostream &operator<<(std::ostream &os, const Vector2 &vec)
-{
-    return os << "[" << vec.x << ", " << vec.y << "]";
+    return result / (double)scalar;
 }
 
 double Vector2::GetMagnitude()
