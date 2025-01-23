@@ -11,6 +11,11 @@ namespace MathUtil
         return a.Normalize();
     }
 
+    double GetMagnitude(Vector2 a)
+    {
+        return Vector2{a}.GetMagnitude();
+    }
+
     double Dot(Vector2 a, Vector2 b)
     {
         return (a.x * b.x) + (a.y * b.y);
@@ -33,5 +38,15 @@ namespace MathUtil
     {
         const double magnitudeNormalVector{1};
         return DegreeToVector(degree, magnitudeNormalVector);
+    }
+
+    Vector2 GetNextVelocity(Vector2 initialVelocity, Vector2 acceleration, double time)
+    {
+        return Vector2{initialVelocity + acceleration * time};
+    }
+
+    Vector2 GetPositionOffset(Vector2 nextVelocity, Vector2 initialVelocity, double time)
+    {
+        return Vector2{((nextVelocity + initialVelocity) / 2) * time};
     }
 }

@@ -8,12 +8,12 @@ namespace MathUtil
     {
     private:
     public:
-        Vector2();
-        Vector2(Vector2 *);
-        Vector2(double x, double y);
-        Vector2(float x, float y);
-        Vector2(int x, int y);
-        ~Vector2();
+        constexpr Vector2();
+        constexpr Vector2(Vector2 *);
+        constexpr Vector2(double x, double y);
+        constexpr Vector2(float x, float y);
+        constexpr Vector2(int x, int y);
+        ~Vector2() = default;
         Vector2 &operator=(const Vector2 &other);
         Vector2 operator+(const Vector2 &other);
         Vector2 operator-(const Vector2 &other);
@@ -23,6 +23,10 @@ namespace MathUtil
         Vector2 operator/(const double &scalar);
         Vector2 operator/(const float &scalar);
         Vector2 operator/(const int &scalar);
+        Vector2 &operator+=(const Vector2 &other);
+        Vector2 &operator-=(const Vector2 &other);
+        Vector2 &operator*=(const Vector2 &other);
+        Vector2 &operator/=(const Vector2 &other);
         double GetMagnitude();
         Vector2 Normalize();
         double x = 0;

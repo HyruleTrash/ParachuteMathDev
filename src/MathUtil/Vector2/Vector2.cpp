@@ -5,31 +5,27 @@
 
 using namespace MathUtil;
 
-Vector2::Vector2()
+constexpr Vector2::Vector2()
 {
 }
 
-Vector2::Vector2(Vector2 *other)
+constexpr Vector2::Vector2(Vector2 *other)
 {
     this->x = other->x;
     this->y = other->y;
 }
 
-Vector2::Vector2(double x, double y)
+constexpr Vector2::Vector2(double x, double y)
 {
     this->x = x;
     this->y = y;
 }
 
-Vector2::Vector2(float x, float y) : Vector2((double)x, (double)y)
+constexpr Vector2::Vector2(float x, float y) : Vector2((double)x, (double)y)
 {
 }
 
-Vector2::Vector2(int x, int y) : Vector2((double)x, (double)y)
-{
-}
-
-Vector2::~Vector2()
+constexpr Vector2::Vector2(int x, int y) : Vector2((double)x, (double)y)
 {
 }
 
@@ -99,6 +95,34 @@ Vector2 Vector2::operator/(const int &scalar)
 {
     Vector2 result{this};
     return result / (double)scalar;
+}
+
+Vector2 &Vector2::operator+=(const Vector2 &other)
+{
+    this->x += other.x;
+    this->y += other.y;
+    return *this;
+}
+
+Vector2 &Vector2::operator-=(const Vector2 &other)
+{
+    this->x -= other.x;
+    this->y -= other.y;
+    return *this;
+}
+
+Vector2 &Vector2::operator*=(const Vector2 &other)
+{
+    this->x *= other.x;
+    this->y *= other.y;
+    return *this;
+}
+
+Vector2 &Vector2::operator/=(const Vector2 &other)
+{
+    this->x /= other.x;
+    this->y /= other.y;
+    return *this;
 }
 
 double Vector2::GetMagnitude()

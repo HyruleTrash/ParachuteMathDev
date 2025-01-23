@@ -1,14 +1,14 @@
 #pragma once
-#include "../Body.cpp"
+#include "../Object.cpp"
 
 namespace Parachute
 {
-    class StaticBody : public Body
+    class Body : public Object
     {
     private:
     public:
-        StaticBody();
-        ~StaticBody();
+        Body();
+        ~Body();
         void Update() override;
     };
 }

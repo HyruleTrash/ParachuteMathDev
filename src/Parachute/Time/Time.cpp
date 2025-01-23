@@ -6,7 +6,6 @@ using namespace Parachute;
 Time::Time()
 {
     startTime = std::chrono::high_resolution_clock::now();
-    runTime = std::chrono::duration_cast<std::chrono::duration<double>>(startTime - startTime).count();
 }
 
 Time::~Time()
