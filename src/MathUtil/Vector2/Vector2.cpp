@@ -32,60 +32,68 @@ Vector2 &Vector2::operator=(const Vector2 &other)
     return *this;
 }
 
-Vector2 &Vector2::operator-(const Vector2 &other)
+Vector2 Vector2::operator-(const Vector2 &other)
 {
-    this->x -= other.x;
-    this->y -= other.y;
-    return *this;
+    Vector2 result{this};
+    result.x -= other.x;
+    result.y -= other.y;
+    return result;
 }
 
-Vector2 &Vector2::operator+(const Vector2 &other)
+Vector2 Vector2::operator+(const Vector2 &other)
 {
-    this->x += other.x;
-    this->y += other.y;
-    return *this;
+    Vector2 result{this};
+    result.x += other.x;
+    result.y += other.y;
+    return result;
 }
 
-Vector2 &Vector2::operator*(const double &scalar)
+Vector2 Vector2::operator*(const double &scalar)
 {
-    this->x *= scalar;
-    this->y *= scalar;
-    return *this;
+    Vector2 result{this};
+    result.x *= scalar;
+    result.y *= scalar;
+    return result;
 }
 
-Vector2 &Vector2::operator*(const float &scalar)
+Vector2 Vector2::operator*(const float &scalar)
 {
-    this->x *= scalar;
-    this->y *= scalar;
-    return *this;
+    Vector2 result{this};
+    result.x *= scalar;
+    result.y *= scalar;
+    return result;
 }
 
-Vector2 &Vector2::operator*(const int &scalar)
+Vector2 Vector2::operator*(const int &scalar)
 {
-    this->x *= scalar;
-    this->y *= scalar;
-    return *this;
+    Vector2 result{this};
+    result.x *= scalar;
+    result.y *= scalar;
+    return result;
 }
 
-Vector2 &Vector2::operator/(const double &scalar)
+Vector2 Vector2::operator/(const double &scalar)
 {
-    this->x /= scalar;
-    this->y /= scalar;
-    return *this;
+    Vector2 result{this};
+    result.x /= scalar;
+    result.y /= scalar;
+    return result;
 }
 
-Vector2 &Vector2::operator/(const float &scalar)
+Vector2 Vector2::operator/(const float &scalar)
 {
-    this->x /= scalar;
-    this->y /= scalar;
-    return *this;
+    Vector2 result{this};
+    result.x /= scalar;
+    result.y /= scalar;
+    return result;
 }
 
-Vector2 &Vector2::operator/(const int &scalar)
+Vector2 Vector2::operator/(const int &scalar)
 {
-    this->x /= scalar;
-    this->y /= scalar;
-    return *this;
+    Vector2 result{this};
+    result.x /= scalar;
+    result.y /= scalar;
+    return result;
 }
 
 std::ostream &operator<<(std::ostream &os, const Vector2 &vec)
