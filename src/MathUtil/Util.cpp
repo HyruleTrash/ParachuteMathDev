@@ -43,7 +43,6 @@ namespace MathUtil
     Vector2 GetNextVelocity(Vector2 initialVelocity, Vector2 totalForce, double mass)
     {
         Vector2 acceleration{totalForce / mass};
-        std::cout << "[" << initialVelocity << "," << totalForce << "," << mass << "," << acceleration << std::endl;
         return Vector2{initialVelocity + acceleration};
     }
 

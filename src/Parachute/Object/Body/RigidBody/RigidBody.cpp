@@ -48,13 +48,13 @@ void RigidBody::Update()
     Body::Update();
 }
 
-void Parachute::RigidBody::AddForce(Vector2 force)
+void RigidBody::AddForce(Vector2 force)
 {
     totalForce += force;
     timeSinceForceChange = 0;
 }
 
-void Parachute::RigidBody::AddImpulse(Vector2 impulse)
+void RigidBody::AddImpulse(Vector2 impulse)
 {
     totalImpulses += impulse;
 }

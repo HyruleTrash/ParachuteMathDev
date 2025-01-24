@@ -19,6 +19,43 @@ int main()
     {
         game.window.clear();
         game.Update();
+
+        if (game.inputManager.IsKeyJustPressed("Left"))
+        {
+            body->AddImpulse(MathUtil::Vector2{-100, 0});
+        }
+        if (game.inputManager.IsKeyJustReleased("Left"))
+        {
+            body->AddImpulse(MathUtil::Vector2{100, 0});
+        }
+
+        if (game.inputManager.IsKeyJustPressed("Right"))
+        {
+            body->AddImpulse(MathUtil::Vector2{100, 0});
+        }
+        if (game.inputManager.IsKeyJustReleased("Right"))
+        {
+            body->AddImpulse(MathUtil::Vector2{-100, 0});
+        }
+
+        if (game.inputManager.IsKeyJustPressed("Up"))
+        {
+            body->AddImpulse(MathUtil::Vector2{0, -100});
+        }
+        if (game.inputManager.IsKeyJustReleased("Up"))
+        {
+            body->AddImpulse(MathUtil::Vector2{0, 100});
+        }
+
+        if (game.inputManager.IsKeyJustPressed("Down"))
+        {
+            body->AddImpulse(MathUtil::Vector2{0, 100});
+        }
+        if (game.inputManager.IsKeyJustReleased("Down"))
+        {
+            body->AddImpulse(MathUtil::Vector2{0, -100});
+        }
+
         while (const std::optional event = game.window.pollEvent())
         {
             if (event->is<sf::Event::Closed>())

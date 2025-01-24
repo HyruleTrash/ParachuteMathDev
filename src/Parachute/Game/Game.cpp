@@ -1,5 +1,6 @@
 #pragma once
 #include "./Game.h"
+#include "Game.h"
 
 using namespace Parachute;
 
@@ -23,8 +24,17 @@ Game::~Game()
 {
 }
 
+void Parachute::Game::GetInputs()
+{
+    inputManager.AddInput(Input{"Left", sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)});
+    inputManager.AddInput(Input{"Right", sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)});
+    inputManager.AddInput(Input{"Up", sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)});
+    inputManager.AddInput(Input{"Down", sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)});
+}
+
 void Game::Update()
 {
+    this->GetInputs();
     time.Update();
     objectManager.Update();
 }

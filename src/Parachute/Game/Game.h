@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "../Time/Time.cpp"
 #include "../Object/ObjectManager.cpp"
+#include "./InputManager/InputManager.cpp"
 
 namespace Parachute
 {
@@ -9,6 +10,7 @@ namespace Parachute
     {
     private:
         MathUtil::Vector2 resolution;
+        void GetInputs();
 
     public:
         enum class GameState
@@ -28,5 +30,6 @@ namespace Parachute
         sf::RenderWindow window;
         GameState gameState{GameState::Start};
         ObjectManager objectManager{};
+        InputManager inputManager{};
     };
 }
