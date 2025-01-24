@@ -22,38 +22,38 @@ int main()
 
         if (game.inputManager.IsKeyJustPressed("Left"))
         {
-            body->AddImpulse(MathUtil::Vector2{-100, 0});
+            body->AddForce(V2_LEFT);
         }
         if (game.inputManager.IsKeyJustReleased("Left"))
         {
-            body->AddImpulse(MathUtil::Vector2{100, 0});
+            body->AddForce(-V2_LEFT);
         }
 
         if (game.inputManager.IsKeyJustPressed("Right"))
         {
-            body->AddImpulse(MathUtil::Vector2{100, 0});
+            body->AddForce(V2_RIGHT);
         }
         if (game.inputManager.IsKeyJustReleased("Right"))
         {
-            body->AddImpulse(MathUtil::Vector2{-100, 0});
+            body->AddForce(-V2_RIGHT);
         }
 
         if (game.inputManager.IsKeyJustPressed("Up"))
         {
-            body->AddImpulse(MathUtil::Vector2{0, -100});
+            body->AddForce(V2_UP);
         }
         if (game.inputManager.IsKeyJustReleased("Up"))
         {
-            body->AddImpulse(MathUtil::Vector2{0, 100});
+            body->AddForce(-V2_UP);
         }
 
         if (game.inputManager.IsKeyJustPressed("Down"))
         {
-            body->AddImpulse(MathUtil::Vector2{0, 100});
+            body->AddForce(V2_DOWN);
         }
         if (game.inputManager.IsKeyJustReleased("Down"))
         {
-            body->AddImpulse(MathUtil::Vector2{0, -100});
+            body->AddForce(-V2_DOWN);
         }
 
         while (const std::optional event = game.window.pollEvent())

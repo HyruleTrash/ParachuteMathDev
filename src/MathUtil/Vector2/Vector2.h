@@ -20,10 +20,16 @@ namespace MathUtil
         Vector2 operator*(const double &scalar);
         Vector2 operator*(const float &scalar);
         Vector2 operator*(const int &scalar);
+        const Vector2 operator*(const double &scalar) const;
+        const Vector2 operator*(const float &scalar) const;
+        const Vector2 operator*(const int &scalar) const;
         Vector2 operator/(const double &scalar);
         Vector2 operator/(const float &scalar);
         Vector2 operator/(const int &scalar);
         bool operator==(const Vector2 &other);
+        const bool operator==(const Vector2 &other) const;
+        bool operator!=(const Vector2 &other);
+        const bool operator!=(const Vector2 &other) const;
         Vector2 &operator+=(const Vector2 &other);
         Vector2 &operator-=(const Vector2 &other);
         Vector2 &operator*=(const Vector2 &other);
@@ -34,6 +40,8 @@ namespace MathUtil
         Vector2 &operator/=(const double &scalar);
         Vector2 &operator/=(const float &scalar);
         Vector2 &operator/=(const int &scalar);
+        Vector2 operator-();
+        const Vector2 operator-() const;
         double GetMagnitude();
         Vector2 Normalize();
         double x = 0;

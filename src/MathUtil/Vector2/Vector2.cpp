@@ -2,6 +2,7 @@
 #include "./Vector2.h"
 #include <iostream>
 #include <cmath>
+#include "Vector2.h"
 
 using namespace MathUtil;
 
@@ -30,10 +31,10 @@ constexpr Vector2::Vector2(int x, int y) : Vector2((double)x, (double)y)
 }
 
 constexpr static Vector2 V2_ZERO{0, 0};
-constexpr static Vector2 V2_UP{0, 1};
-constexpr static Vector2 V2_DOWN{0, -1};
-constexpr static Vector2 V2_LEFT{1, 0};
-constexpr static Vector2 V2_RIGHT{0, 1};
+constexpr static Vector2 V2_UP{0, -1};
+constexpr static Vector2 V2_DOWN{0, 1};
+constexpr static Vector2 V2_LEFT{-1, 0};
+constexpr static Vector2 V2_RIGHT{1, 0};
 
 std::ostream &operator<<(std::ostream &os, const Vector2 &vec)
 {
@@ -65,9 +66,7 @@ Vector2 Vector2::operator+(const Vector2 &other)
 
 Vector2 Vector2::operator*(const double &scalar)
 {
-    Vector2 result{this};
-    result.x *= scalar;
-    result.y *= scalar;
+    Vector2 result{this->x * scalar, this->y * scalar};
     return result;
 }
 
@@ -83,11 +82,27 @@ Vector2 Vector2::operator*(const int &scalar)
     return result * (double)scalar;
 }
 
+const Vector2 Vector2::operator*(const double &scalar) const
+{
+    Vector2 result{this->x * scalar, this->y * scalar};
+    return result;
+}
+
+const Vector2 Vector2::operator*(const float &scalar) const
+{
+    Vector2 result{this->x * scalar, this->y * scalar};
+    return result;
+}
+
+const Vector2 Vector2::operator*(const int &scalar) const
+{
+    Vector2 result{this->x * scalar, this->y * scalar};
+    return result;
+}
+
 Vector2 Vector2::operator/(const double &scalar)
 {
-    Vector2 result{this};
-    result.x /= scalar;
-    result.y /= scalar;
+    Vector2 result{this->x / scalar, this->y / scalar};
     return result;
 }
 
@@ -106,6 +121,27 @@ Vector2 Vector2::operator/(const int &scalar)
 bool Vector2::operator==(const Vector2 &other)
 {
     if (this->x == other.x && this->y == other.y)
+        return true;
+    return false;
+}
+
+const bool Vector2::operator==(const Vector2 &other) const
+{
+    if (this->x == other.x && this->y == other.y)
+        return true;
+    return false;
+}
+
+bool Vector2::operator!=(const Vector2 &other)
+{
+    if (this->x != other.x || this->y != other.y)
+        return true;
+    return false;
+}
+
+const bool Vector2::operator!=(const Vector2 &other) const
+{
+    if (this->x != other.x || this->y != other.y)
         return true;
     return false;
 }
@@ -133,7 +169,7 @@ Vector2 &Vector2::operator*=(const Vector2 &other)
 
 Vector2 &Vector2::operator/=(const Vector2 &other)
 {
-    if (Vector2{other} == Vector2{V2_ZERO})
+    if (other == V2_ZERO)
     {
         this->x = 0;
         this->y = 0;
@@ -202,6 +238,18 @@ Vector2 &Vector2::operator/=(const int &scalar)
     this->x /= scalar;
     this->y /= scalar;
     return *this;
+}
+
+Vector2 Vector2::operator-()
+{
+    Vector2 result{-this->x, -this->y};
+    return result;
+}
+
+const Vector2 Vector2::operator-() const
+{
+    Vector2 result{-this->x, -this->y};
+    return result;
 }
 
 double Vector2::GetMagnitude()
