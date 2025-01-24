@@ -17,10 +17,12 @@ RigidBody::~RigidBody()
 
 void RigidBody::Update()
 {
-    if (totalForce.GetMagnitude() != 0 && mass != 0)
+    if ((totalForce.GetMagnitude() != 0 || totalImpulses.GetMagnitude() != 0) && mass != 0)
     {
         timeSinceForceChange += game->time.deltaTime;
         Vector2 force{totalForce * timeSinceForceChange};
+        force += totalImpulses * game->time.deltaTime;
+        // std::cout << Vector2{totalImpulses * game->time.deltaTime} << std::endl;
 
         double maxVelocityMagnitude{MathUtil::GetMagnitude(MAX_VELOCITY)};
         Vector2 nextVelocity{MathUtil::GetNextVelocity(velocity, force, mass)};
@@ -50,4 +52,9 @@ void Parachute::RigidBody::AddForce(Vector2 force)
 {
     totalForce += force;
     timeSinceForceChange = 0;
+}
+
+void Parachute::RigidBody::AddImpulse(Vector2 impulse)
+{
+    totalImpulses += impulse;
 }

@@ -13,7 +13,7 @@ int main()
     body->size = MathUtil::Vector2{40, 40};
     body->game = &game;
     game.objectManager.Initialize(body, game.GetResolution() / 2);
-    body->AddForce(MathUtil::Vector2{2, 2});
+    // body->AddImpulse(MathUtil::Vector2{2000, 2000});
 
     while (game.window.isOpen())
     {
