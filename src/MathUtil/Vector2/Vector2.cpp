@@ -29,6 +29,12 @@ constexpr Vector2::Vector2(int x, int y) : Vector2((double)x, (double)y)
 {
 }
 
+constexpr static Vector2 V2_ZERO{0, 0};
+constexpr static Vector2 V2_UP{0, 1};
+constexpr static Vector2 V2_DOWN{0, -1};
+constexpr static Vector2 V2_LEFT{1, 0};
+constexpr static Vector2 V2_RIGHT{0, 1};
+
 std::ostream &operator<<(std::ostream &os, const Vector2 &vec)
 {
     return os << "[" << vec.x << ", " << vec.y << "]";
@@ -97,6 +103,13 @@ Vector2 Vector2::operator/(const int &scalar)
     return result / (double)scalar;
 }
 
+bool Vector2::operator==(const Vector2 &other)
+{
+    if (this->x == other.x && this->y == other.y)
+        return true;
+    return false;
+}
+
 Vector2 &Vector2::operator+=(const Vector2 &other)
 {
     this->x += other.x;
@@ -120,8 +133,74 @@ Vector2 &Vector2::operator*=(const Vector2 &other)
 
 Vector2 &Vector2::operator/=(const Vector2 &other)
 {
+    if (Vector2{other} == Vector2{V2_ZERO})
+    {
+        this->x = 0;
+        this->y = 0;
+        return *this;
+    }
     this->x /= other.x;
     this->y /= other.y;
+    return *this;
+}
+
+Vector2 &Vector2::operator*=(const double &scalar)
+{
+    this->x *= scalar;
+    this->y *= scalar;
+    return *this;
+}
+
+Vector2 &Vector2::operator*=(const float &scalar)
+{
+    this->x *= scalar;
+    this->y *= scalar;
+    return *this;
+}
+
+Vector2 &Vector2::operator*=(const int &scalar)
+{
+    this->x *= scalar;
+    this->y *= scalar;
+    return *this;
+}
+
+Vector2 &Vector2::operator/=(const double &scalar)
+{
+    if (scalar == 0)
+    {
+        this->x = 0;
+        this->y = 0;
+        return *this;
+    }
+    this->x /= scalar;
+    this->y /= scalar;
+    return *this;
+}
+
+Vector2 &Vector2::operator/=(const float &scalar)
+{
+    if (scalar == 0)
+    {
+        this->x = 0;
+        this->y = 0;
+        return *this;
+    }
+    this->x /= scalar;
+    this->y /= scalar;
+    return *this;
+}
+
+Vector2 &Vector2::operator/=(const int &scalar)
+{
+    if (scalar == 0)
+    {
+        this->x = 0;
+        this->y = 0;
+        return *this;
+    }
+    this->x /= scalar;
+    this->y /= scalar;
     return *this;
 }
 

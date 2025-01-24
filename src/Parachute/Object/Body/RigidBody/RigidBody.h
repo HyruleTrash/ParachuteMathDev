@@ -7,14 +7,15 @@ namespace Parachute
     {
     private:
         constexpr static Vector2 MAX_VELOCITY{200, 200};
+        Vector2 totalForce{V2_ZERO};
 
     public:
         RigidBody();
         ~RigidBody();
         void Update() override;
-        Vector2 velocity{};
-        Vector2 force{};
+        void AddForce(Vector2 force);
+        Vector2 velocity{V2_ZERO};
         double timeSinceForceChange;
-        float mass{};
+        float mass{1};
     };
 }

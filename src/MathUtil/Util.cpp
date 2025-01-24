@@ -40,9 +40,11 @@ namespace MathUtil
         return DegreeToVector(degree, magnitudeNormalVector);
     }
 
-    Vector2 GetNextVelocity(Vector2 initialVelocity, Vector2 acceleration, double time)
+    Vector2 GetNextVelocity(Vector2 initialVelocity, Vector2 totalForce, double mass)
     {
-        return Vector2{initialVelocity + acceleration * time};
+        Vector2 acceleration{totalForce / mass};
+        std::cout << "[" << initialVelocity << "," << totalForce << "," << mass << "," << acceleration << std::endl;
+        return Vector2{initialVelocity + acceleration};
     }
 
     Vector2 GetPositionOffset(Vector2 nextVelocity, Vector2 initialVelocity, double time)
