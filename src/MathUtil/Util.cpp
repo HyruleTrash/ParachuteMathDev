@@ -39,15 +39,4 @@ namespace MathUtil
         const double magnitudeNormalVector{1};
         return DegreeToVector(degree, magnitudeNormalVector);
     }
-
-    Vector2 GetNextVelocity(Vector2 initialVelocity, Vector2 totalForce, double mass)
-    {
-        Vector2 acceleration{totalForce / mass};
-        return Vector2{initialVelocity + acceleration};
-    }
-
-    Vector2 GetPositionOffset(Vector2 nextVelocity, Vector2 initialVelocity, double time)
-    {
-        return Vector2{((nextVelocity + initialVelocity) / 2) * time};
-    }
 }

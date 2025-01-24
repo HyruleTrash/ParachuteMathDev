@@ -2,6 +2,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "./RigidBody.h"
+#include "../../../../MathUtil/Physics.cpp"
 #include "../../../../MathUtil/Util.cpp"
 #include "RigidBody.h"
 
@@ -25,15 +26,23 @@ void RigidBody::Update()
         Vector2 force{totalForce * timeSinceForceChange};
         force += totalImpulses * game->time.deltaTime;
 
-        const double maxVelocityMagnitude{MathUtil::GetMagnitude(MAX_VELOCITY)};
+        // add drag if body has velocity
+        if (velocity.GetMagnitude() != 0)
+        {
+            force += -velocity.Normalize() * MathUtil::Physics::AIR_DRAG * game->time.deltaTime;
+        }
 
-        Vector2 nextVelocity{MathUtil::GetNextVelocity(velocity, force, mass)};
-        if (nextVelocity.GetMagnitude() > maxVelocityMagnitude)
+        Vector2 nextVelocity{MathUtil::Physics::GetNextVelocity(velocity, force, mass)};
+
+        // Limit Velocity, for terminal velocity
+        const double maxVelocityMagnitude{MathUtil::GetMagnitude(MAX_VELOCITY)};
+        double nextVelocityMagnitude = nextVelocity.GetMagnitude();
+        if (nextVelocityMagnitude > maxVelocityMagnitude)
         {
             nextVelocity.Normalize() * maxVelocityMagnitude;
         }
 
-        Vector2 offset{MathUtil::GetPositionOffset(nextVelocity, velocity, game->time.deltaTime)};
+        Vector2 offset{MathUtil::Physics::GetPositionOffset(nextVelocity, velocity, game->time.deltaTime)};
         position += offset;
 
         velocity = nextVelocity;
