@@ -1,5 +1,6 @@
 #pragma once
 #include "../../MathUtil/Vector2/Vector2.cpp"
+#include "./Bounds/Bounds.cpp"
 
 namespace Parachute
 {
@@ -9,12 +10,13 @@ namespace Parachute
     {
     private:
     public:
-        Object();
-        ~Object();
-        virtual void Update() {};
+        Object() = default;
+        ~Object() = default;
+        virtual void Update();
         bool visable{true};
         Game *game;
         Vector2 position{};
         Vector2 size{};
+        Bounds bounds;
     };
 }

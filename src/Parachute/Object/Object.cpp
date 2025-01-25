@@ -1,12 +1,10 @@
 #pragma once
 #include "./Object.h"
+#include "Object.h"
 
 using namespace Parachute;
 
-Object::Object()
+void Parachute::Object::Update()
 {
-}
-
-Object::~Object()
-{
+    bounds = {size};
 }

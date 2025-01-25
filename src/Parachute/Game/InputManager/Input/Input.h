@@ -7,7 +7,7 @@ namespace Parachute
     class Input
     {
     public:
-        Input();
+        Input() = default;
         Input(Input *);
         Input(std::string);
         Input(std::string, bool);

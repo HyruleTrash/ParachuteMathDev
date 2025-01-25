@@ -23,7 +23,7 @@ namespace Parachute
         Game(int width, int height);
         Game();
         Game(Vector2 resolution);
-        ~Game();
+        ~Game() = default;
         void Update();
         Vector2 GetResolution();
         Time time{};

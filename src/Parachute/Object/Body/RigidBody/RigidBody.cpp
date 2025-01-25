@@ -1,45 +1,38 @@
 #pragma once
 #include <iostream>
+#include <cmath>
 #include <SFML/Graphics.hpp>
 #include "./RigidBody.h"
+#include "../StaticBody/StaticBody.cpp"
 #include "../../../../MathUtil/Physics.cpp"
 #include "../../../../MathUtil/Util.cpp"
 #include "RigidBody.h"
 
 using namespace Parachute;
 
-RigidBody::RigidBody()
-{
-}
-
-RigidBody::~RigidBody()
-{
-}
-
 void RigidBody::Update()
 {
     // if it has a mass, and is supposed to be moving
-    if (mass != 0 && ((totalForce.GetMagnitude() != 0 || totalImpulses.GetMagnitude() != 0) || velocity != V2_ZERO))
+    if (mass != 0 && ((forces.GetMagnitude() != 0 || impulses.GetMagnitude() != 0) || velocity != V2_ZERO))
     {
-        // force to acceleration
-        timeSinceForceChange += game->time.deltaTime;
-        Vector2 force{totalForce * timeSinceForceChange};
-        force += totalImpulses * game->time.deltaTime;
+        Vector2 totalForce{forces};
 
         // add drag if body has velocity
         if (velocity.GetMagnitude() != 0)
         {
-            force += -velocity.Normalize() * MathUtil::Physics::AIR_DRAG * game->time.deltaTime;
+            totalForce += -velocity.Normalize() * MathUtil::Physics::AIR_DRAG;
         }
 
-        Vector2 nextVelocity{MathUtil::Physics::GetNextVelocity(velocity, force, mass)};
+        Vector2 nextVelocity{MathUtil::Physics::GetNextVelocity(velocity, totalForce, mass, game->time.deltaTime)};
+
+        nextVelocity += impulses;
 
         // Limit Velocity, for terminal velocity
         const double maxVelocityMagnitude{MathUtil::GetMagnitude(MAX_VELOCITY)};
         double nextVelocityMagnitude = nextVelocity.GetMagnitude();
         if (nextVelocityMagnitude > maxVelocityMagnitude)
         {
-            nextVelocity.Normalize() * maxVelocityMagnitude;
+            nextVelocity = nextVelocity.Normalize() * maxVelocityMagnitude;
         }
 
         Vector2 offset{MathUtil::Physics::GetPositionOffset(nextVelocity, velocity, game->time.deltaTime)};
@@ -48,35 +41,36 @@ void RigidBody::Update()
         velocity = nextVelocity;
     }
 
-    if (totalForce.GetMagnitude() == 0 && totalImpulses.GetMagnitude() == 0)
+    if (forces.GetMagnitude() == 0 && impulses.GetMagnitude() == 0)
     {
-        timeSinceForceChange = 0;
         if (abs(velocity.x) < 1)
             velocity.x = 0;
         if (abs(velocity.y) < 1)
             velocity.y = 0;
     }
 
-    // temp looping
-    if (position.x - size.x / 2 >= game->GetResolution().x)
-        position.x = 0 - size.x / 2;
-    if (position.x + size.x / 2 < 0 - size.x / 2)
-        position.x = game->GetResolution().x + size.x / 2;
-    if (position.y - size.y / 2 >= game->GetResolution().y)
-        position.y = 0 - size.y / 2;
-    if (position.y + size.y / 2 < 0 - size.y / 2)
-        position.y = game->GetResolution().y + size.y / 2;
-
     Body::Update();
 }
 
 void RigidBody::AddForce(Vector2 force)
 {
-    totalForce += force;
-    timeSinceForceChange = 0;
+    forces += force;
 }
 
 void RigidBody::AddImpulse(Vector2 impulse)
 {
-    totalImpulses += impulse;
+    impulses += impulse;
+}
+
+void RigidBody::OnCollided(Body *other, Vector2 collisionNormal)
+{
+    double density = other->density;
+    AddImpulse(collisionNormal * density);
+}
+
+void RigidBody::OnCollisionEnded(Body *other, IntersectionData data)
+{
+    Body *oldData = dynamic_cast<Body *>(data.intersectorOldData);
+    double density = oldData->density;
+    AddImpulse(-data.appliedNormalVector * density);
 }

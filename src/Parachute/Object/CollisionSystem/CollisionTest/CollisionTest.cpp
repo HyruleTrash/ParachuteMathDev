@@ -14,20 +14,13 @@ CollisionTest::CollisionTest(Object *a, Object *b)
 CollisionTestResult CollisionTest::TestAABB()
 {
     if (
-        a->position.x + (a->size.x / 2) > b->position.x - (b->size.x / 2) &&
-        a->position.x - (a->size.x / 2) < b->position.x + (b->size.x / 2) &&
-        a->position.y - (a->size.y / 2) < b->position.y + (b->size.y / 2) &&
-        a->position.y + (a->size.y / 2) > b->position.y - (b->size.y / 2))
+        a->bounds.R_Side.x + a->position.x > b->bounds.L_Side.x + b->position.x &&
+        a->bounds.L_Side.x + a->position.x < b->bounds.R_Side.x + b->position.x &&
+        a->bounds.T_Side.y + a->position.y < b->bounds.B_Side.y + b->position.y &&
+        a->bounds.B_Side.y + a->position.y > b->bounds.T_Side.y + b->position.y)
     {
-        Vector2 collisionNormalA{};
-        Vector2 collisionNormalB{};
-
-        Vector2 directionTowards = GetDirection(a->position, b->position);
-        directionTowards.x = SnapDirectionToEightDirections(directionTowards.x);
-        directionTowards.y = SnapDirectionToEightDirections(directionTowards.y);
-
-        collisionNormalA = directionTowards;
-        collisionNormalB = -collisionNormalA;
+        Vector2 collisionNormalA{a->bounds.GetClosestNormal(a->position, b->position)};
+        Vector2 collisionNormalB{-collisionNormalA};
 
         return CollisionTestResult{true, collisionNormalA, collisionNormalB};
     }

@@ -7,8 +7,9 @@ namespace Parachute
     {
     private:
     public:
-        StaticBody();
-        ~StaticBody();
+        StaticBody() = default;
+        ~StaticBody() = default;
         void Update() override;
+        double GetDensity() override;
     };
 }

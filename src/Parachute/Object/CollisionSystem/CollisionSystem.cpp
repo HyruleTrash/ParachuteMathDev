@@ -1,18 +1,21 @@
 #include "./CollisionSystem.h"
 #include "../Body/Body.h"
-#include "CollisionSystem.h"
 
 using namespace Parachute;
 
 void CollisionSystem::Update(std::vector<Object *> objects)
 {
     auto checkList = SortBasedOnDistance(objects);
+    // test for collision and trigger logic
     for (auto collisionTest : checkList)
     {
         CollisionTestResult resultData = collisionTest.TestAABB();
         if (resultData.result)
         {
-            ApplyCollision(collisionTest.a, collisionTest.b, resultData);
+            Body *bodyA = dynamic_cast<Body *>(collisionTest.a);
+            Body *bodyB = dynamic_cast<Body *>(collisionTest.b);
+            bodyA->ApplyCollision(bodyB, resultData.collisionNormalB);
+            bodyB->ApplyCollision(bodyA, resultData.collisionNormalA);
         }
     }
 }
@@ -62,16 +65,4 @@ std::vector<CollisionTest> CollisionSystem::SortBasedOnDistance(std::vector<Obje
     }
 
     return result;
-}
-
-void CollisionSystem::ApplyCollision(Object *a, Object *b, CollisionTestResult resultData)
-{
-    Body *body = dynamic_cast<Body *>(a);
-    if (body->isTrigger)
-    {
-    }
-    else
-    {
-        double density = body->mass / body->size.GetCubicVolume();
-    }
 }

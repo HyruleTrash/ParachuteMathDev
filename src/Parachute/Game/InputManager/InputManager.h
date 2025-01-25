@@ -9,7 +9,7 @@ namespace Parachute
     class InputManager
     {
     public:
-        InputManager();
+        InputManager() = default;
         ~InputManager();
         void AddInput(Input);
         std::optional<Input *> HasInput(std::string);

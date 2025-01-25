@@ -5,10 +5,6 @@
 
 using namespace Parachute;
 
-InputManager::InputManager()
-{
-}
-
 InputManager::~InputManager()
 {
     for (auto input : this->inputs)

@@ -20,10 +20,6 @@ Game::Game(Vector2 resolution) : Game((int)resolution.x, (int)resolution.y)
 {
 }
 
-Game::~Game()
-{
-}
-
 void Parachute::Game::GetInputs()
 {
     inputManager.AddInput(Input{"Left", sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)});

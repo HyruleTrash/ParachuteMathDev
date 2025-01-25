@@ -4,10 +4,6 @@
 
 using namespace Parachute;
 
-Input::Input()
-{
-}
-
 Input::Input(Input *input) : Input(input->name, input->isPressed)
 {
 }

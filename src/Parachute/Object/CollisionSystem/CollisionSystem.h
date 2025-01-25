@@ -12,6 +12,5 @@ namespace Parachute
         ~CollisionSystem() = default;
         void Update(std::vector<Object *>);
         std::vector<CollisionTest> SortBasedOnDistance(std::vector<Object *>);
-        void ApplyCollision(Object *, Object *, CollisionTestResult);
     };
 }

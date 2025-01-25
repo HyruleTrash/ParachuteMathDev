@@ -11,7 +11,7 @@ namespace Parachute
 
     public:
         Time();
-        ~Time();
+        ~Time() = default;
         void Update();
         float deltaTime;
     };
