@@ -10,5 +10,7 @@ namespace Parachute
         Body();
         ~Body();
         void Update() override;
+        bool isTrigger{false};
+        float mass{1};
     };
 }

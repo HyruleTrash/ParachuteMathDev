@@ -17,7 +17,6 @@ namespace Parachute
         void AddForce(Vector2 force);
         void AddImpulse(Vector2 impulse);
         Vector2 velocity{V2_ZERO};
-        double timeSinceForceChange;
-        float mass{1};
+        double timeSinceForceChange{};
     };
 }

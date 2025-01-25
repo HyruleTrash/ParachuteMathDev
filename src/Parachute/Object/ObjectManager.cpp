@@ -1,11 +1,8 @@
 #pragma once
 #include "./ObjectManager.h"
+#include "ObjectManager.h"
 
 using namespace Parachute;
-
-ObjectManager::ObjectManager()
-{
-}
 
 ObjectManager::~ObjectManager()
 {
@@ -21,6 +18,7 @@ void ObjectManager::Update()
     {
         object->Update();
     }
+    collisionSystem.Update(std::vector<Object *>{objects});
 }
 
 void ObjectManager::Initialize(Object *object)

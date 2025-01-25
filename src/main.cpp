@@ -13,7 +13,12 @@ int main()
     body->size = MathUtil::Vector2{40, 40};
     body->game = &game;
     game.objectManager.Initialize(body, game.GetResolution() / 2);
-    // body->AddImpulse(MathUtil::Vector2{2000, 2000});
+    const double speed = 2000;
+
+    Parachute::RigidBody *temp = new Parachute::RigidBody();
+    temp->size = MathUtil::Vector2{40, 40};
+    temp->game = &game;
+    game.objectManager.Initialize(temp, game.GetResolution() / 4);
 
     while (game.window.isOpen())
     {
@@ -22,38 +27,38 @@ int main()
 
         if (game.inputManager.IsKeyJustPressed("Left"))
         {
-            body->AddForce(V2_LEFT);
+            body->AddImpulse(V2_LEFT * speed);
         }
         if (game.inputManager.IsKeyJustReleased("Left"))
         {
-            body->AddForce(-V2_LEFT);
+            body->AddImpulse(-V2_LEFT * speed);
         }
 
         if (game.inputManager.IsKeyJustPressed("Right"))
         {
-            body->AddForce(V2_RIGHT);
+            body->AddImpulse(V2_RIGHT * speed);
         }
         if (game.inputManager.IsKeyJustReleased("Right"))
         {
-            body->AddForce(-V2_RIGHT);
+            body->AddImpulse(-V2_RIGHT * speed);
         }
 
         if (game.inputManager.IsKeyJustPressed("Up"))
         {
-            body->AddForce(V2_UP);
+            body->AddImpulse(V2_UP * speed);
         }
         if (game.inputManager.IsKeyJustReleased("Up"))
         {
-            body->AddForce(-V2_UP);
+            body->AddImpulse(-V2_UP * speed);
         }
 
         if (game.inputManager.IsKeyJustPressed("Down"))
         {
-            body->AddForce(V2_DOWN);
+            body->AddImpulse(V2_DOWN * speed);
         }
         if (game.inputManager.IsKeyJustReleased("Down"))
         {
-            body->AddForce(-V2_DOWN);
+            body->AddImpulse(-V2_DOWN * speed);
         }
 
         while (const std::optional event = game.window.pollEvent())

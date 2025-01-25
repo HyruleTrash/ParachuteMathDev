@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "./Object.cpp"
+#include "./CollisionSystem/CollisionSystem.cpp"
 
 namespace Parachute
 {
@@ -8,9 +9,10 @@ namespace Parachute
     {
     private:
         std::vector<Object *> objects;
+        CollisionSystem collisionSystem{};
 
     public:
-        ObjectManager();
+        ObjectManager() = default;
         ~ObjectManager();
         void Update();
         void Initialize(Object *object);

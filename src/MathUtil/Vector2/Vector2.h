@@ -43,6 +43,7 @@ namespace MathUtil
         Vector2 operator-();
         const Vector2 operator-() const;
         double GetMagnitude();
+        double GetCubicVolume();
         Vector2 Normalize();
         double x = 0;
         double y = 0;

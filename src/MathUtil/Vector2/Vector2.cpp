@@ -257,6 +257,11 @@ double Vector2::GetMagnitude()
     return sqrt(pow(this->x, 2) + pow(this->y, 2));
 }
 
+double Vector2::GetCubicVolume()
+{
+    return (this->x * this->y);
+}
+
 Vector2 Vector2::Normalize()
 {
     double mag = this->GetMagnitude();
