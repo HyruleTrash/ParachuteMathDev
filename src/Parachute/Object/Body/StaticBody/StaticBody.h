@@ -12,5 +12,6 @@ namespace Parachute
         ~StaticBody() = default;
         void Update() override;
         double GetDensity() override;
+        float bouncyness{0.8};
     };
 }

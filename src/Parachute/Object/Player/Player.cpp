@@ -5,8 +5,8 @@ using namespace Parachute;
 
 Player::Player()
 {
-    size = Vector2{40, 40};
-    mass = 15;
+    size = DEFAULT_PLAYER_SIZE;
+    mass = DEFAULT_PLAYER_MASS;
 }
 
 Player::Player(Game *game) : Player()
@@ -28,13 +28,14 @@ void Player::Update()
         AddImpulse(V2_RIGHT * speed);
     }
 
-    if (game->inputManager.IsKeyBeingPressed("Up"))
-    {
-        AddImpulse(V2_UP * speed);
-    }
+    // Leave for later possible use
+    // if (game->inputManager.IsKeyBeingPressed("Up"))
+    // {
+    //     AddImpulse(V2_UP * speed);
+    // }
 
-    if (game->inputManager.IsKeyBeingPressed("Down"))
-    {
-        AddImpulse(V2_DOWN * speed);
-    }
+    // if (game->inputManager.IsKeyBeingPressed("Down"))
+    // {
+    //     AddImpulse(V2_DOWN * speed);
+    // }
 }

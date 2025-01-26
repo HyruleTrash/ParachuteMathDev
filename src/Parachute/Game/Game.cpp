@@ -63,17 +63,24 @@ void Game::ChangeGameState(GameState state)
         Player *player = new Player{this};
         player->activeStates.push_back(GameState::Playing);
         player->activeStates.push_back(GameState::Pauzed);
-        objectManager.Initialize(player, Vector2{resolution.x / 2, resolution.y * 0.75});
+        objectManager.Initialize(player, Vector2{resolution.x / 2, resolution.y * 0.9});
 
-        const double wallThickness{80};
-        StaticBody *RightWall = new StaticBody{Vector2{wallThickness, wallThickness}, this};
+        const float wallOffset{0.95};
+        StaticBody *RightWall = new StaticBody{resolution, this};
         RightWall->activeStates.push_back(GameState::Playing);
         RightWall->activeStates.push_back(GameState::Pauzed);
-        // objectManager.Initialize(RightWall, Vector2{resolution.x + wallThickness / 2, resolution.y / 2});
-        objectManager.Initialize(RightWall, Vector2{resolution.x * 0.75, resolution.y / 2});
-        StaticBody *LeftWall = new StaticBody{Vector2{wallThickness, resolution.y}, this};
+        objectManager.Initialize(RightWall, Vector2{(resolution.x / 2) + resolution.x * wallOffset, resolution.y / 2});
+        StaticBody *LeftWall = new StaticBody{Vector2{resolution}, this};
         LeftWall->activeStates.push_back(GameState::Playing);
         LeftWall->activeStates.push_back(GameState::Pauzed);
-        objectManager.Initialize(LeftWall, Vector2{0 - wallThickness / 2, resolution.y / 2});
+        objectManager.Initialize(LeftWall, Vector2{(resolution.x / 2) - resolution.x * wallOffset, resolution.y / 2});
+        StaticBody *TopWall = new StaticBody{resolution, this};
+        TopWall->activeStates.push_back(GameState::Playing);
+        TopWall->activeStates.push_back(GameState::Pauzed);
+        objectManager.Initialize(TopWall, Vector2{resolution.x / 2, (resolution.y / 2) - resolution.y});
+        StaticBody *BottomWall = new StaticBody{Vector2{resolution}, this};
+        BottomWall->activeStates.push_back(GameState::Playing);
+        BottomWall->activeStates.push_back(GameState::Pauzed);
+        objectManager.Initialize(BottomWall, Vector2{resolution.x / 2, (resolution.y / 2) + resolution.y});
     }
 }

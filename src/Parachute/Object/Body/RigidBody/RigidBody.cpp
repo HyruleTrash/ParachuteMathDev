@@ -88,8 +88,8 @@ void RigidBody::OnColliding(Body *other, Vector2 collisionNormal)
 
     if (dynamic_cast<StaticBody *>(other) != nullptr)
     {
-        const double bouncyness{0.25};
-        AddImpulse(collisionNormal * velocity.GetMagnitude() * bouncyness);
+        StaticBody *otherStaticBody = dynamic_cast<StaticBody *>(other);
+        AddImpulse(collisionNormal * velocity.GetMagnitude() * otherStaticBody->bouncyness);
     }
     else if (dynamic_cast<RigidBody *>(other) != nullptr)
     {
