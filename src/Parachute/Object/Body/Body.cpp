@@ -134,6 +134,13 @@ void Body::ApplyCollision(Body *other, Vector2 collisionNormal)
                 OnCollided(other, collisionNormal);
             }
         }
+        else
+        {
+            if (!isTrigger)
+            {
+                OnColliding(other, collisionNormal);
+            }
+        }
     }
 }
 

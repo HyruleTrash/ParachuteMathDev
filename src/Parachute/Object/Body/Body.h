@@ -21,6 +21,7 @@ namespace Parachute
         virtual void OnTriggerEntered(Body *other) {};
         virtual void OnTriggerExited(Body *other, IntersectionData);
         virtual void OnCollided(Body *other, Vector2 collisionNormal) {};
+        virtual void OnColliding(Body *other, Vector2 collisionNormal) {};
         virtual void OnCollisionEnded(Body *other, IntersectionData);
         virtual double GetDensity();
         bool isTrigger{false};

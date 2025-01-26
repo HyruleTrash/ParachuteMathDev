@@ -17,10 +17,10 @@ Bounds::Bounds(Vector2 size)
 Vector2 Bounds::GetClosestNormal(Vector2 aPos, Vector2 bPos)
 {
     Vector2 sidesAndCorners[] = {
-        Vector2{aPos + this->TL_Corner},
-        Vector2{aPos + this->TR_Corner},
-        Vector2{aPos + this->BL_Corner},
-        Vector2{aPos + this->BR_Corner},
+        // Vector2{aPos + this->TL_Corner},
+        // Vector2{aPos + this->TR_Corner},
+        // Vector2{aPos + this->BL_Corner},
+        // Vector2{aPos + this->BR_Corner},
         Vector2{aPos + this->L_Side},
         Vector2{aPos + this->R_Side},
         Vector2{aPos + this->T_Side},

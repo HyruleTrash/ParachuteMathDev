@@ -266,5 +266,9 @@ Vector2 Vector2::Normalize()
 {
     double mag = this->GetMagnitude();
     Vector2 result = Vector2{this} / mag;
+    if (result.x != result.x)
+        result.x = 0;
+    if (result.y != result.y)
+        result.y = 0;
     return result;
 }

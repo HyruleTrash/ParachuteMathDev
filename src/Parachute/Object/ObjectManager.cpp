@@ -14,11 +14,11 @@ ObjectManager::~ObjectManager()
 
 void ObjectManager::Update()
 {
+    collisionSystem.Update(std::vector<Object *>{objects});
     for (Object *object : objects)
     {
         object->Update();
     }
-    collisionSystem.Update(std::vector<Object *>{objects});
 }
 
 void ObjectManager::Initialize(Object *object)

@@ -13,5 +13,5 @@ void StaticBody::Update()
 
 double StaticBody::GetDensity()
 {
-    return 1;
+    return INFINITY;
 }
