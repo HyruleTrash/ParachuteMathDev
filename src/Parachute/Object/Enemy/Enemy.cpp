@@ -2,6 +2,7 @@
 #include <cmath>
 #include "./Enemy.h"
 #include "../../../MathUtil/Util.cpp"
+#include "Enemy.h"
 
 using namespace Parachute;
 
@@ -29,6 +30,10 @@ void Enemy::Update()
     // move down
     AddForce(V2_DOWN * speed);
 
+    // To and fro movement
+    if (RandomRange(-100, 100) > 50)
+        AddImpulse(V2_LEFT * RandomRange(-5, 5));
+
     // ignore the top bounding box, enable collision after having been in game
     if (!collisionEnabled)
     {
@@ -36,4 +41,13 @@ void Enemy::Update()
         if (std::chrono::duration_cast<std::chrono::duration<double>>(now - spawnTimeStamp).count() > wakeUpThreshold)
             collisionEnabled = true;
     }
+}
+void Enemy::OnColliding(Body *other, Vector2 collisionNormal)
+{
+    if (dynamic_cast<Player *>(other) != nullptr)
+    {
+        game->objectManager.Delete(this);
+        return;
+    }
+    RigidBody::OnColliding(other, collisionNormal);
 }

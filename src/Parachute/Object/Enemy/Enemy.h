@@ -1,5 +1,6 @@
 #pragma once
 #include "../Body/RigidBody/RigidBody.h"
+#include "../Player/Player.h"
 
 namespace Parachute
 {
@@ -16,6 +17,7 @@ namespace Parachute
         Enemy(Game *);
         ~Enemy() = default;
         void Update() override;
+        void OnColliding(Body *other, Vector2 collisionNormal) override;
         double speed{200};
         double wakeUpThreshold{2};
     };

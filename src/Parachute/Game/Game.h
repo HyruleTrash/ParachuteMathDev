@@ -13,6 +13,7 @@ namespace Parachute
         void GetInputs();
         MathUtil::Vector2 resolution;
         double points{0};
+        double totalPoints{0};
         constexpr static double HIGH_SCORE{200};
         Object *pointCounterObject;
 
@@ -24,6 +25,7 @@ namespace Parachute
         void Update();
         Vector2 GetResolution();
         void ChangeGameState(GameState);
+        void RemovePoints(double);
         Time time{};
         sf::RenderWindow window;
         GameState gameState{GameState::Start};

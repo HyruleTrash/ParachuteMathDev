@@ -5,6 +5,7 @@
 #include "../Object/Enemy/EnemySpawner.cpp"
 #include "../Object/Enemy/EnemyDeathTrigger.cpp"
 #include "../Object/Body/StaticBody/StaticBody.cpp"
+#include "Game.h"
 
 using namespace Parachute;
 
@@ -51,16 +52,18 @@ void Game::Update()
     if (gameState == GameState::Playing)
     {
         points += time.deltaTime;
+        totalPoints += time.deltaTime;
         Text *pointCounterText = dynamic_cast<Text *>(pointCounterObject);
         pointCounterText->text = intToStringWithZeros((int)round(points), 3);
     }
     if (gameState == GameState::End)
     {
         Text *pointCounterText = dynamic_cast<Text *>(pointCounterObject);
-        pointCounterText->text = "Points: " + intToStringWithZeros((int)round(points), 3);
+        pointCounterText->text = "Points: " + intToStringWithZeros((int)round(totalPoints), 3);
         if (inputManager.IsKeyJustPressed("Enter"))
         {
             points = 0;
+            totalPoints = 0;
             ChangeGameState(GameState::Playing);
         }
     }
@@ -132,9 +135,16 @@ void Game::ChangeGameState(GameState state)
         objectManager.Initialize(pointCounter, Vector2{resolution.x / 2, resolution.y * 0.3});
         pointCounterObject = pointCounter;
 
-        std::string resultText = points > HIGH_SCORE ? "You won!!" : "Press ENTER\nto retry";
+        std::string resultText = totalPoints > HIGH_SCORE ? "You won!!" : "Press ENTER\nto retry";
         Text *endText = new Text{sf::Color::White, 40, resultText, this};
         endText->activeStates.push_back(GameState::End);
         objectManager.Initialize(endText, Vector2{resolution.x / 2, resolution.y * 0.5});
     }
+}
+
+void Game::RemovePoints(double toRemove)
+{
+    points -= toRemove;
+    if (points < 0)
+        ChangeGameState(GameState::End);
 }
