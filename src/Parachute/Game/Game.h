@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "./GameState.h"
 #include "../Time/Time.cpp"
 #include "../Object/ObjectManager.cpp"
 #include "./InputManager/InputManager.cpp"
@@ -13,19 +14,13 @@ namespace Parachute
         void GetInputs();
 
     public:
-        enum class GameState
-        {
-            Start,
-            Playing,
-            Pauzed,
-            End
-        };
         Game(int width, int height);
-        Game();
-        Game(Vector2 resolution);
+        Game() : Game(400, 400) {};
+        Game(Vector2 resolution) : Game((int)resolution.x, (int)resolution.y) {};
         ~Game() = default;
         void Update();
         Vector2 GetResolution();
+        void ChangeGameState(GameState);
         Time time{};
         sf::RenderWindow window;
         GameState gameState{GameState::Start};

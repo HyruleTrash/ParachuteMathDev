@@ -6,7 +6,6 @@
 #include "../StaticBody/StaticBody.cpp"
 #include "../../../../MathUtil/Physics.cpp"
 #include "../../../../MathUtil/Util.cpp"
-#include "RigidBody.h"
 
 using namespace Parachute;
 

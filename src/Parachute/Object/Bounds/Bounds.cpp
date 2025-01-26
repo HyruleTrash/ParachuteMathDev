@@ -14,32 +14,52 @@ Bounds::Bounds(Vector2 size)
     T_Side = Vector2{(double)0, 0 - (size.y / 2)};
 }
 
-Vector2 Bounds::GetClosestNormal(Vector2 aPos, Vector2 bPos)
+Vector2 Bounds::GetClosestNormal(Vector2 aPos, Vector2 bPos, Bounds *bBounds)
 {
-    Vector2 sidesAndCorners[] = {
-        // Vector2{aPos + this->TL_Corner},
-        // Vector2{aPos + this->TR_Corner},
-        // Vector2{aPos + this->BL_Corner},
-        // Vector2{aPos + this->BR_Corner},
+    Vector2 sidesA[] = {
         Vector2{aPos + this->L_Side},
         Vector2{aPos + this->R_Side},
         Vector2{aPos + this->T_Side},
         Vector2{aPos + this->B_Side},
     };
-    int positionArraySize = sizeof(sidesAndCorners) / sizeof(sidesAndCorners[0]);
+    Vector2 sidesB[] = {
+        Vector2{bPos + bBounds->L_Side},
+        Vector2{bPos + bBounds->R_Side},
+        Vector2{bPos + bBounds->T_Side},
+        Vector2{bPos + bBounds->B_Side},
+    };
+    Vector2 sides[] = {
+        Vector2{this->L_Side},
+        Vector2{this->R_Side},
+        Vector2{this->T_Side},
+        Vector2{this->B_Side},
+        Vector2{bBounds->L_Side},
+        Vector2{bBounds->R_Side},
+        Vector2{bBounds->T_Side},
+        Vector2{bBounds->B_Side},
+    };
+    int positionArraySize = sizeof(sides) / sizeof(sides[0]);
 
     double distances[positionArraySize];
     double smallestDist{INFINITY};
-    for (size_t i = 0; i < positionArraySize; i++)
+    int index = 0;
+    for (Vector2 sideA : sidesA)
     {
-        distances[i] = GetDistance(bPos, sidesAndCorners[i]);
-        smallestDist = std::min(distances[i], smallestDist);
-    }
-    for (size_t i = 0; i < positionArraySize; i++)
-    {
-        if (distances[i] == smallestDist)
+        index++;
+        for (Vector2 sideB : sidesB)
         {
-            return Vector2{sidesAndCorners[i] - aPos}.Normalize();
+            distances[index] = GetDistance(sidesB, sideA);
+            smallestDist = std::min(distances[index], smallestDist);
+        }
+    }
+
+    index = 0;
+    for (double distance : distances)
+    {
+        index++;
+        if (distance == smallestDist)
+        {
+            return Vector2{sides[index]}.Normalize();
         }
     }
     return V2_ZERO;

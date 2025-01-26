@@ -3,7 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include "./Body.h"
 #include "../../Game/Game.h"
-#include "Body.h"
 
 using namespace Parachute;
 
@@ -36,16 +35,12 @@ void Body::Update()
         shape.setPosition(pos);
         game->window.draw(shape);
     }
+}
 
-    // temp looping
-    if (position.x + bounds.L_Side.x >= game->GetResolution().x)
-        position.x = 0 + bounds.L_Side.x;
-    if (position.x + bounds.R_Side.x < 0 + bounds.L_Side.x)
-        position.x = game->GetResolution().x + bounds.R_Side.x;
-    if (position.y + bounds.T_Side.y >= game->GetResolution().y)
-        position.y = 0 + bounds.T_Side.y;
-    if (position.y + bounds.B_Side.y < 0 + bounds.T_Side.y)
-        position.y = game->GetResolution().y + bounds.B_Side.y;
+GameState Body::GetGameState()
+{
+    return game->gameState;
+    ;
 }
 
 void Body::CleanUpCollision()

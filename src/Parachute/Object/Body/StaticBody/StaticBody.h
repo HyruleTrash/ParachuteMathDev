@@ -8,6 +8,7 @@ namespace Parachute
     private:
     public:
         StaticBody() = default;
+        StaticBody(Vector2 size, Game *);
         ~StaticBody() = default;
         void Update() override;
         double GetDensity() override;

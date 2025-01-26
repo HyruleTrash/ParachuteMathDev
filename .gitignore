@@ -1,2 +1,3 @@
 out/build/Default/*
 !out/build/Default/*.dll
+!out/build/Default/Assets

@@ -19,7 +19,8 @@ CollisionTestResult CollisionTest::TestAABB()
         a->bounds.T_Side.y + a->position.y < b->bounds.B_Side.y + b->position.y &&
         a->bounds.B_Side.y + a->position.y > b->bounds.T_Side.y + b->position.y)
     {
-        Vector2 collisionNormalA{a->bounds.GetClosestNormal(a->position, b->position)};
+        Vector2 collisionNormalA{a->bounds.GetClosestNormal(a->position, b->position, &b->bounds)};
+        std::cout << collisionNormalA << std::endl;
         Vector2 collisionNormalB{-collisionNormalA};
 
         return CollisionTestResult{true, collisionNormalA, collisionNormalB};

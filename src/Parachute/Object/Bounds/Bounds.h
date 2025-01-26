@@ -9,7 +9,7 @@ namespace Parachute
         Bounds() = default;
         Bounds(Vector2 size);
         ~Bounds() = default;
-        Vector2 GetClosestNormal(Vector2 aPos, Vector2 bPos);
+        Vector2 GetClosestNormal(Vector2 aPos, Vector2 bPos, Bounds *bBounds);
         Vector2 TL_Corner{};
         Vector2 TR_Corner{};
         Vector2 BL_Corner{};

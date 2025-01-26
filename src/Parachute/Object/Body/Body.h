@@ -15,6 +15,7 @@ namespace Parachute
         Body(Body *);
         ~Body() = default;
         void Update() override;
+        GameState GetGameState() override;
         void CleanUpCollision();
         void ApplyCollisionExit(IntersectionData);
         void ApplyCollision(Body *other, Vector2 collisionNormal);
