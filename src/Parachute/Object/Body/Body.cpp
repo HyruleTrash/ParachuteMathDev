@@ -28,7 +28,7 @@ void Body::Update()
     if (visable)
     {
         sf::RectangleShape shape({(float)size.x, (float)size.y});
-        shape.setFillColor(sf::Color::Green);
+        shape.setFillColor(color);
         Vector2 origin{size / 2};
         shape.setOrigin({(float)origin.x, (float)origin.y});
         sf::Vector2f pos{(float)position.x, (float)position.y};
@@ -40,7 +40,6 @@ void Body::Update()
 GameState Body::GetGameState()
 {
     return game->gameState;
-    ;
 }
 
 void Body::CleanUpCollision()

@@ -1,5 +1,6 @@
 #pragma once
 #include "./Vector2/Vector2.cpp"
+#include <random>
 #include <cmath>
 
 #pragma once
@@ -98,5 +99,13 @@ namespace MathUtil
         }
 
         return result;
+    }
+
+    double RandomRange(double min, double max)
+    {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> dis(min, max);
+        return dis(gen);
     }
 }

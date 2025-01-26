@@ -68,6 +68,9 @@ void RigidBody::AddImpulse(Vector2 impulse)
 
 void RigidBody::OnColliding(Body *other, Vector2 collisionNormal)
 {
+    if (!collisionEnabled)
+        return;
+
     double density = other->density; // currently goes unused, can be used for thick air, or fluids
 
     // base collision

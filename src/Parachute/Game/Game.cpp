@@ -2,6 +2,7 @@
 #include "./Game.h"
 #include "../Object/Text/Text.cpp"
 #include "../Object/Player/Player.cpp"
+#include "../Object/Enemy/EnemySpawner.cpp"
 #include "../Object/Body/StaticBody/StaticBody.cpp"
 
 using namespace Parachute;
@@ -61,8 +62,6 @@ void Game::ChangeGameState(GameState state)
     else if (state == GameState::Playing)
     {
         Player *player = new Player{this};
-        player->activeStates.push_back(GameState::Playing);
-        player->activeStates.push_back(GameState::Pauzed);
         objectManager.Initialize(player, Vector2{resolution.x / 2, resolution.y * 0.9});
 
         const float wallOffset{0.95};
@@ -82,5 +81,8 @@ void Game::ChangeGameState(GameState state)
         BottomWall->activeStates.push_back(GameState::Playing);
         BottomWall->activeStates.push_back(GameState::Pauzed);
         objectManager.Initialize(BottomWall, Vector2{resolution.x / 2, (resolution.y / 2) + resolution.y});
+
+        EnemySpawner *enemySpawner = new EnemySpawner{this};
+        objectManager.Initialize(enemySpawner, V2_ZERO);
     }
 }

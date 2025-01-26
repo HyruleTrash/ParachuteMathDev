@@ -7,6 +7,8 @@ Player::Player()
 {
     size = DEFAULT_PLAYER_SIZE;
     mass = DEFAULT_PLAYER_MASS;
+    this->activeStates.push_back(GameState::Playing);
+    this->activeStates.push_back(GameState::Pauzed);
 }
 
 Player::Player(Game *game) : Player()
