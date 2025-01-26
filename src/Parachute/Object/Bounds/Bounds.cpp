@@ -2,6 +2,18 @@
 
 using namespace Parachute;
 
+Bounds::Bounds(Bounds *other)
+{
+    TL_Corner = other->TL_Corner;
+    TR_Corner = other->TR_Corner;
+    BL_Corner = other->BL_Corner;
+    BR_Corner = other->BR_Corner;
+    R_Side = other->R_Side;
+    L_Side = other->L_Side;
+    B_Side = other->B_Side;
+    T_Side = other->T_Side;
+}
+
 Bounds::Bounds(Vector2 size)
 {
     TL_Corner = Vector2{0 - (size.x / 2), 0 - (size.y / 2)};
@@ -12,6 +24,25 @@ Bounds::Bounds(Vector2 size)
     L_Side = Vector2{0 - (size.x / 2), (double)0};
     B_Side = Vector2{(double)0, 0 + (size.y / 2)};
     T_Side = Vector2{(double)0, 0 - (size.y / 2)};
+}
+
+std::ostream &operator<<(std::ostream &os, const Bounds &bounds)
+{
+    return os << "[" << bounds.R_Side << ", " << bounds.L_Side << ", " << bounds.B_Side << ", " << bounds.T_Side << "]";
+}
+
+Bounds Parachute::Bounds::operator+(const Vector2 &other)
+{
+    Bounds result{this};
+    result.TL_Corner += other;
+    result.TR_Corner += other;
+    result.BL_Corner += other;
+    result.BR_Corner += other;
+    result.R_Side += other;
+    result.L_Side += other;
+    result.B_Side += other;
+    result.T_Side += other;
+    return result;
 }
 
 Vector2 Bounds::GetClosestNormal(Vector2 aPos, Vector2 bPos)

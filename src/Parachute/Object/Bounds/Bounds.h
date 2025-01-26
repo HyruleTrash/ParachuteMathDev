@@ -7,8 +7,10 @@ namespace Parachute
     {
     public:
         Bounds() = default;
+        Bounds(Bounds *);
         Bounds(Vector2 size);
         ~Bounds() = default;
+        Bounds operator+(const Vector2 &other);
         Vector2 GetClosestNormal(Vector2 aPos, Vector2 bPos);
         Vector2 TL_Corner{};
         Vector2 TR_Corner{};
