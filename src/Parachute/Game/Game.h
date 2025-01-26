@@ -10,8 +10,11 @@ namespace Parachute
     class Game
     {
     private:
-        MathUtil::Vector2 resolution;
         void GetInputs();
+        MathUtil::Vector2 resolution;
+        double points{0};
+        constexpr static double HIGH_SCORE{200};
+        Object *pointCounterObject;
 
     public:
         Game(int width, int height);

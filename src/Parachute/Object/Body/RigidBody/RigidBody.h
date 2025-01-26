@@ -20,7 +20,6 @@ namespace Parachute
         void AddForce(Vector2 force);
         void AddImpulse(Vector2 impulse);
         void OnColliding(Body *other, Vector2 collisionNormal);
-        bool collisionEnabled{true};
         Vector2 velocity{V2_ZERO};
     };
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "./Player.h"
+#include "Player.h"
 
 using namespace Parachute;
 
@@ -40,4 +41,13 @@ void Player::Update()
     // {
     //     AddImpulse(V2_DOWN * speed);
     // }
+}
+void Player::OnColliding(Body *other, Vector2 collisionNormal)
+{
+    if (dynamic_cast<Enemy *>(other) != nullptr)
+    {
+        game->ChangeGameState(GameState::End);
+        return;
+    }
+    RigidBody::OnColliding(other, collisionNormal);
 }

@@ -3,6 +3,7 @@
 #include "../Object/Text/Text.cpp"
 #include "../Object/Player/Player.cpp"
 #include "../Object/Enemy/EnemySpawner.cpp"
+#include "../Object/Enemy/EnemyDeathTrigger.cpp"
 #include "../Object/Body/StaticBody/StaticBody.cpp"
 
 using namespace Parachute;
@@ -38,9 +39,30 @@ void Game::Update()
             window.close();
     }
 
+    if (inputManager.IsKeyJustPressed("Escape"))
+    {
+        window.close();
+    }
+
     if (gameState == GameState::Start && inputManager.IsKeyJustPressed("Enter"))
     {
         ChangeGameState(GameState::Playing);
+    }
+    if (gameState == GameState::Playing)
+    {
+        points += time.deltaTime;
+        Text *pointCounterText = dynamic_cast<Text *>(pointCounterObject);
+        pointCounterText->text = intToStringWithZeros((int)round(points), 3);
+    }
+    if (gameState == GameState::End)
+    {
+        Text *pointCounterText = dynamic_cast<Text *>(pointCounterObject);
+        pointCounterText->text = "Points: " + intToStringWithZeros((int)round(points), 3);
+        if (inputManager.IsKeyJustPressed("Enter"))
+        {
+            points = 0;
+            ChangeGameState(GameState::Playing);
+        }
     }
 }
 
@@ -52,6 +74,11 @@ Vector2 Game::GetResolution()
 void Game::ChangeGameState(GameState state)
 {
     gameState = state;
+
+    if (state != GameState::Pauzed)
+    {
+        objectManager.ClearObjects();
+    }
 
     if (state == GameState::Start)
     {
@@ -84,5 +111,30 @@ void Game::ChangeGameState(GameState state)
 
         EnemySpawner *enemySpawner = new EnemySpawner{this};
         objectManager.Initialize(enemySpawner, V2_ZERO);
+        EnemyDeathTrigger *deathTrigger = new EnemyDeathTrigger{this};
+        objectManager.Initialize(deathTrigger, Vector2{resolution.x / 2, (resolution.y / 2) + resolution.y * wallOffset});
+
+        Text *pointCounter = new Text{sf::Color::White, 40, "000", this};
+        pointCounter->activeStates.push_back(GameState::Playing);
+        pointCounter->activeStates.push_back(GameState::Pauzed);
+        objectManager.Initialize(pointCounter, Vector2{resolution.x * 0.1, resolution.y * 0.1});
+        pointCounterObject = pointCounter;
+
+        Text *fakeHighscore = new Text{sf::Color::Green, 30, "HS: " + std::to_string((int)HIGH_SCORE), this};
+        fakeHighscore->activeStates.push_back(GameState::Playing);
+        fakeHighscore->activeStates.push_back(GameState::Pauzed);
+        objectManager.Initialize(fakeHighscore, Vector2{resolution.x * 0.15, resolution.y * 0.2});
+    }
+    else if (state == GameState::End)
+    {
+        Text *pointCounter = new Text{sf::Color::White, 30, "000", this};
+        pointCounter->activeStates.push_back(GameState::End);
+        objectManager.Initialize(pointCounter, Vector2{resolution.x / 2, resolution.y * 0.3});
+        pointCounterObject = pointCounter;
+
+        std::string resultText = points > HIGH_SCORE ? "You won!!" : "Press ENTER\nto retry";
+        Text *endText = new Text{sf::Color::White, 40, resultText, this};
+        endText->activeStates.push_back(GameState::End);
+        objectManager.Initialize(endText, Vector2{resolution.x / 2, resolution.y * 0.5});
     }
 }

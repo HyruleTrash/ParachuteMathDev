@@ -27,7 +27,10 @@ std::vector<CollisionTest> CollisionSystem::SortBasedOnDistance(std::vector<Obje
     {
         Object *objectI = objects[i];
         // make sure only to check for bodies
-        if (dynamic_cast<Body *>(objectI) == nullptr)
+        Body *bodyCheck = dynamic_cast<Body *>(objectI);
+        if (bodyCheck == nullptr)
+            continue;
+        else if (bodyCheck->collisionEnabled == false)
             continue;
 
         for (size_t j = 0; j < objects.size(); j++)
@@ -37,7 +40,10 @@ std::vector<CollisionTest> CollisionSystem::SortBasedOnDistance(std::vector<Obje
 
             Object *objectJ = objects[j];
             // make sure only to check for bodies
-            if (dynamic_cast<Body *>(objectJ) == nullptr)
+            Body *bodyCheck = dynamic_cast<Body *>(objectJ);
+            if (bodyCheck == nullptr)
+                continue;
+            else if (bodyCheck->collisionEnabled == false)
                 continue;
 
             const double reachOffset{10};

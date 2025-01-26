@@ -17,6 +17,7 @@ namespace Parachute
         virtual void Update();
         virtual GameState GetGameState() { return GameState::Start; };
         bool visable{true};
+        bool checkGameState{true};
         Game *game;
         Vector2 position{};
         Vector2 size{};

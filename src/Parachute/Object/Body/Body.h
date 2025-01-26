@@ -25,6 +25,7 @@ namespace Parachute
         virtual void OnColliding(Body *other, Vector2 collisionNormal) {};
         virtual void OnCollisionEnded(Body *other, IntersectionData);
         virtual double GetDensity();
+        bool collisionEnabled{true};
         sf::Color color{sf::Color::Blue};
         bool isTrigger{false};
         double density{};

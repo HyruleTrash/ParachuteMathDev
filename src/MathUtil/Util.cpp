@@ -108,4 +108,14 @@ namespace MathUtil
         std::uniform_int_distribution<> dis(min, max);
         return dis(gen);
     }
+
+    std::string intToStringWithZeros(int n, int length)
+    {
+        std::string str = std::to_string(abs(n));
+        while (str.length() < length)
+            str = "0" + str;
+        if (n < 0)
+            str = "-" + str;
+        return str;
+    }
 }

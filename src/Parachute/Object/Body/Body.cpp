@@ -20,6 +20,11 @@ Parachute::Body::Body(Body *other)
 
 void Body::Update()
 {
+    if (isTrigger)
+    {
+        checkGameState = false;
+        visable = false;
+    }
     Object::Update();
     density = GetDensity();
 
@@ -118,7 +123,6 @@ void Body::ApplyCollision(Body *other, Vector2 collisionNormal)
         intersectingBodies.push_back(IntersectionData{other, new Body{other}, collisionNormal});
         if (isAlreadyIntersectingPreviousFrame == false)
         {
-
             if (isTrigger)
             {
                 OnTriggerEntered(other);

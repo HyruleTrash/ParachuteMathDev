@@ -7,13 +7,16 @@ void Parachute::Object::Update()
 {
     bounds = {size};
 
-    visable = false;
-    for (GameState state : activeStates)
+    if (checkGameState)
     {
-        if (state == GetGameState())
+        visable = false;
+        for (GameState state : activeStates)
         {
-            visable = true;
-            break;
+            if (state == GetGameState())
+            {
+                visable = true;
+                break;
+            }
         }
     }
 }

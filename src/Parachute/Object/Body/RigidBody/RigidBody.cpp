@@ -12,7 +12,6 @@ using namespace Parachute;
 void RigidBody::Update()
 {
     // // if it has a mass, and is supposed to be moving
-    // std::cout << velocity << ", " << position << std::endl;
     if (mass != 0 && ((forces.GetMagnitude() != 0 || impulses.GetMagnitude() != 0) || velocity != V2_ZERO))
     {
         Vector2 totalForce{forces};

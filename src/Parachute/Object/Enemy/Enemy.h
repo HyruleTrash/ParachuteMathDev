@@ -8,7 +8,7 @@ namespace Parachute
     private:
         constexpr static Vector2 DEFAULT_ENEMY_SIZE{40, 40};
         constexpr static float DEFAULT_ENEMY_MASS{5};
-        constexpr static sf::Color colors[]{sf::Color::Red, sf::Color::Green, sf::Color::Magenta, sf::Color::Cyan};
+        constexpr static sf::Color colors[]{sf::Color{139, 58, 94}, sf::Color{167, 68, 142}, sf::Color{196, 40, 76}, sf::Color{116, 0, 58}};
         std::chrono::time_point<std::chrono::high_resolution_clock> spawnTimeStamp;
 
     public:
