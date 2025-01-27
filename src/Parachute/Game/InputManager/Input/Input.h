@@ -4,6 +4,7 @@
 
 namespace Parachute
 {
+    /// @brief The input class holds relevant information regarding specific Inputs. such as when it was last held and released.
     class Input
     {
     public:

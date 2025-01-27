@@ -4,9 +4,9 @@
 
 namespace Parachute
 {
+    /// @brief Simple trigger object, removes enemies from the game once the come into contact
     class EnemyDeathTrigger : public RigidBody
     {
-    private:
     public:
         EnemyDeathTrigger() = default;
         EnemyDeathTrigger(Game *);

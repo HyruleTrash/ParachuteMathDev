@@ -3,6 +3,7 @@
 
 namespace Parachute
 {
+    /// @brief Holds the result after a collision test. The collision normals representing the side that was hit
     class CollisionTestResult
     {
     public:

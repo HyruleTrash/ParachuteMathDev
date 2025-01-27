@@ -5,6 +5,7 @@
 
 namespace Parachute
 {
+    /// @brief Holds data for testing two objects their collision with eachother
     class CollisionTest
     {
     public:

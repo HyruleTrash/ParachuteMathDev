@@ -6,6 +6,7 @@
 #include "../StaticBody/StaticBody.cpp"
 #include "../../../../MathUtil/Physics.cpp"
 #include "../../../../MathUtil/Util.cpp"
+#include "RigidBody.h"
 
 using namespace Parachute;
 
@@ -55,6 +56,13 @@ void RigidBody::Update()
     Body::Update();
 }
 
+/// @brief Used for collision distance sorting, checkout the collision system class for more
+/// @return
+double RigidBody::CollisionOffset()
+{
+    return velocity.GetMagnitude();
+}
+
 void RigidBody::AddForce(Vector2 force)
 {
     forces += force;
@@ -72,7 +80,7 @@ void RigidBody::OnColliding(Body *other, Vector2 collisionNormal)
 
     double density = other->density; // currently goes unused, can be used for thick air, or fluids
 
-    // base collision
+    // base collision repelant force, to make sure neither bodies are intersecting
     Vector2 toRemove{collisionNormal * Dot(velocity, collisionNormal)};
     AddImpulse(-toRemove);
 
@@ -88,6 +96,7 @@ void RigidBody::OnColliding(Body *other, Vector2 collisionNormal)
         AddForce(-frictionDir * forces.GetMagnitude() * other->friction);
     }
 
+    // apply repelant force, depends on body type
     if (dynamic_cast<StaticBody *>(other) != nullptr)
     {
         StaticBody *otherStaticBody = dynamic_cast<StaticBody *>(other);

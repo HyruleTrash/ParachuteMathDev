@@ -5,6 +5,7 @@
 
 namespace Parachute
 {
+    /// @brief Keeps track of all game objects
     class ObjectManager
     {
     private:

@@ -4,6 +4,7 @@
 
 namespace Parachute
 {
+    /// @brief Lets the user interact with their own physics based object
     class Player : public RigidBody
     {
     private:

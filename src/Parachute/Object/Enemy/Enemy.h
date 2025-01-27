@@ -4,6 +4,7 @@
 
 namespace Parachute
 {
+    /// @brief Enemy that the player must avoid, removes points upon contact
     class Enemy : public RigidBody
     {
     private:
@@ -18,7 +19,9 @@ namespace Parachute
         ~Enemy() = default;
         void Update() override;
         void OnColliding(Body *other, Vector2 collisionNormal) override;
-        double speed{200};
-        double wakeUpThreshold{2};
+        void OnCollided(Body *other, Vector2 collisionNormal) override;
+        Vector2 speed{300, 500};
+        bool directionLeft;
+        double wakeUpThreshold{0.1};
     };
 }

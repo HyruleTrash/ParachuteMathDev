@@ -13,9 +13,13 @@ Enemy::Enemy()
     spawnTimeStamp = std::chrono::high_resolution_clock::now();
     collisionEnabled = false;
     this->activeStates.push_back(GameState::Playing);
-    this->activeStates.push_back(GameState::Pauzed);
+
+    // pick a random color
     int randomColorIndex = (int)round(RandomRange(1, sizeof(colors) / sizeof(colors[0]))) - 1;
     color = colors[randomColorIndex];
+
+    // pick a random direction
+    directionLeft = (int)round(RandomRange(-1, 1)) == 0;
 }
 
 Enemy::Enemy(Game *game) : Enemy()
@@ -28,13 +32,15 @@ void Enemy::Update()
     RigidBody::Update();
 
     // move down
-    AddForce(V2_DOWN * speed);
+    AddForce(V2_DOWN * speed.y);
 
     // To and fro movement
-    if (RandomRange(-100, 100) > 50)
-        AddImpulse(V2_LEFT * RandomRange(-5, 5));
+    if (directionLeft)
+        AddForce(V2_LEFT * speed.x);
+    else
+        AddForce(V2_RIGHT * speed.x);
 
-    // ignore the top bounding box, enable collision after having been in game
+    // to ignore the top bounding box, enable collision after having been in game for a certain amount of time
     if (!collisionEnabled)
     {
         auto now = std::chrono::high_resolution_clock::now();
@@ -42,6 +48,10 @@ void Enemy::Update()
             collisionEnabled = true;
     }
 }
+
+/// @brief On collision with the player, remove self to avoid any other collision logic from occuring
+/// @param other
+/// @param collisionNormal
 void Enemy::OnColliding(Body *other, Vector2 collisionNormal)
 {
     if (dynamic_cast<Player *>(other) != nullptr)
@@ -50,4 +60,16 @@ void Enemy::OnColliding(Body *other, Vector2 collisionNormal)
         return;
     }
     RigidBody::OnColliding(other, collisionNormal);
+}
+
+void Enemy::OnCollided(Body *other, Vector2 collisionNormal)
+{
+    if (collisionNormal == V2_LEFT)
+    {
+        directionLeft = false;
+    }
+    else if (collisionNormal == V2_RIGHT)
+    {
+        directionLeft = true;
+    }
 }

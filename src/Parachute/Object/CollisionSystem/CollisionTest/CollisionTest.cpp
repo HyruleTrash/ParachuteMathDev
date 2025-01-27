@@ -11,6 +11,8 @@ CollisionTest::CollisionTest(Object *a, Object *b)
     this->b = b;
 }
 
+/// @brief Checks if the two bounding boxes are intersecting, if so get the normals of the sides that were hit
+/// @return
 CollisionTestResult CollisionTest::TestAABB()
 {
     if (

@@ -16,6 +16,8 @@ void StaticBody::Update()
     Body::Update();
 }
 
+/// @brief returns infinity, for nothing can pass through a static body
+/// @return
 double StaticBody::GetDensity()
 {
     return INFINITY;

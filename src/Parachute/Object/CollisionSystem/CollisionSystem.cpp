@@ -20,6 +20,9 @@ void CollisionSystem::Update(std::vector<Object *> objects)
     }
 }
 
+/// @brief To avoid checking unneeded object's sort them based on if they are even close enough to collide
+/// @param objects
+/// @return
 std::vector<CollisionTest> CollisionSystem::SortBasedOnDistance(std::vector<Object *> objects)
 {
     std::vector<CollisionTest> result{};
@@ -27,10 +30,10 @@ std::vector<CollisionTest> CollisionSystem::SortBasedOnDistance(std::vector<Obje
     {
         Object *objectI = objects[i];
         // make sure only to check for bodies
-        Body *bodyCheck = dynamic_cast<Body *>(objectI);
-        if (bodyCheck == nullptr)
+        Body *bodyCheckI = dynamic_cast<Body *>(objectI);
+        if (bodyCheckI == nullptr)
             continue;
-        else if (bodyCheck->collisionEnabled == false)
+        else if (bodyCheckI->collisionEnabled == false)
             continue;
 
         for (size_t j = 0; j < objects.size(); j++)
@@ -40,15 +43,18 @@ std::vector<CollisionTest> CollisionSystem::SortBasedOnDistance(std::vector<Obje
 
             Object *objectJ = objects[j];
             // make sure only to check for bodies
-            Body *bodyCheck = dynamic_cast<Body *>(objectJ);
-            if (bodyCheck == nullptr)
+            Body *bodyCheckJ = dynamic_cast<Body *>(objectJ);
+            if (bodyCheckJ == nullptr)
                 continue;
-            else if (bodyCheck->collisionEnabled == false)
+            else if (bodyCheckJ->collisionEnabled == false)
                 continue;
 
-            const double reachOffset{10};
-            double sizeObjectI = objectI->size.GetMagnitude();
-            double sizeObjectJ = objectJ->size.GetMagnitude();
+            // add a offset for leeway
+            double reachOffset{10};
+
+            // account for the fact that physics bodies move
+            double sizeObjectI = objectI->size.GetMagnitude() + bodyCheckI->CollisionOffset();
+            double sizeObjectJ = objectJ->size.GetMagnitude() + bodyCheckJ->CollisionOffset();
             // Make distance calc
             double distance = MathUtil::GetDistance(objectI->position, objectJ->position);
             if (distance < sizeObjectI + reachOffset || distance < sizeObjectJ + reachOffset)

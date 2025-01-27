@@ -6,6 +6,7 @@ namespace Parachute
 {
     class Body;
 
+    /// @brief Holds interaction data, mostly used for retrieving old collision data
     class IntersectionData
     {
     public:

@@ -7,6 +7,7 @@
 
 namespace Parachute
 {
+    /// @brief The game class overall holds all game information, and scenic logic
     class Game
     {
     private:

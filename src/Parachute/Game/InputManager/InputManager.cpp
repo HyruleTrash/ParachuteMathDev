@@ -13,6 +13,10 @@ InputManager::~InputManager()
     }
 }
 
+/// @brief A opperator for easily printing the inputs found within the input manager. For debugging purposes
+/// @param os
+/// @param manager
+/// @return
 std::ostream &operator<<(std::ostream &os, const InputManager &manager)
 {
     std::string result{};
@@ -26,6 +30,8 @@ std::ostream &operator<<(std::ostream &os, const InputManager &manager)
               << result << "]";
 }
 
+/// @brief Adds a input class to a list of current inputs, if it doesnt contain it already. if it does it will set the relevant input data instead.
+/// @param input
 void InputManager::AddInput(Input input)
 {
     std::optional<Input *> search = this->HasInput(input.name);
@@ -47,6 +53,9 @@ void InputManager::AddInput(Input input)
     }
 }
 
+/// @brief Loops through the input list to see if the id/name of a input is already being looked after or not
+/// @param name
+/// @return
 std::optional<Input *> InputManager::HasInput(std::string name)
 {
     for (auto input : inputs)
@@ -60,6 +69,9 @@ std::optional<Input *> InputManager::HasInput(std::string name)
     return {};
 }
 
+/// @brief Checks if the input is being looked after, and returns if it is being pressed or not
+/// @param name
+/// @return
 bool InputManager::IsKeyBeingPressed(std::string name)
 {
     std::optional<Input *> search = this->HasInput(name);
@@ -77,6 +89,10 @@ bool InputManager::IsKeyBeingPressed(std::string name)
     }
 }
 
+/// @brief Depending on the threshold and timestamp found inside the input class, returns if it was only just pressed or not
+/// Usefull for when you only want to detect the button once
+/// @param name
+/// @return
 bool InputManager::IsKeyJustPressed(std::string name)
 {
     std::optional<Input *> search = this->HasInput(name);
@@ -101,6 +117,9 @@ bool InputManager::IsKeyJustPressed(std::string name)
     }
 }
 
+/// @brief If you want a avverse effect after having pushed a button on your keyboard. This function does just that. Barely any difference in functionality. except when the time stamps are set
+/// @param name
+/// @return
 bool InputManager::IsKeyJustReleased(std::string name)
 {
     std::optional<Input *> search = this->HasInput(name);

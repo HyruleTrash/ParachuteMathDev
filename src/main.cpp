@@ -8,8 +8,10 @@
 
 int main()
 {
+    // Create game
     Parachute::Game game{};
 
+    // Make a loop that is run, alwaysm until the game closes
     while (game.window.isOpen())
     {
         game.window.clear();

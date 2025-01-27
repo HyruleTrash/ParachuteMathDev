@@ -6,7 +6,6 @@ namespace Parachute
     {
         Start,
         Playing,
-        Pauzed,
         End
     };
 }

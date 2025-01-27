@@ -4,6 +4,7 @@
 
 namespace Parachute
 {
+    /// @brief Spawns a enemy through the object manager, based on a timer that uses deltaTime
     class EnemySpawner : public Object
     {
     private:

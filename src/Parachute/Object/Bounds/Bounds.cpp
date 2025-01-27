@@ -45,6 +45,11 @@ Bounds Parachute::Bounds::operator+(const Vector2 &other)
     return result;
 }
 
+/// @brief checks the distance between each side, and returns the normal of the closest one
+/// sadly only works with cubes that all hold a equal lenght and width.
+/// @param aPos
+/// @param bPos
+/// @return
 Vector2 Bounds::GetClosestNormal(Vector2 aPos, Vector2 bPos)
 {
     Vector2 sidesAndCorners[] = {

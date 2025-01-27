@@ -30,6 +30,7 @@ void Body::Update()
 
     CleanUpCollision();
 
+    // render object/box if visable
     if (visable)
     {
         sf::RectangleShape shape({(float)size.x, (float)size.y});
@@ -47,13 +48,14 @@ GameState Body::GetGameState()
     return game->gameState;
 }
 
-void Body::CleanUpCollision()
-{
-    /*
+/// @brief
+/*
     this is run at the start of the physics frame,
     you can consider it the end of the last frame really.
     we cleanup some data, so that it can be used again.
-    */
+*/
+void Body::CleanUpCollision()
+{
     std::vector<IntersectionData> NoLongerIntersecting;
     for (auto bodyOld : intersectingBodiesPreviousFrame)
     {
@@ -84,6 +86,8 @@ void Body::CleanUpCollision()
     intersectingBodies = {};
 }
 
+/// @brief Tells the relevant bodies that they are no longer intersecting
+/// @param data
 void Body::ApplyCollisionExit(IntersectionData data)
 {
     Body *other = dynamic_cast<Body *>(data.intersectorPtr);
@@ -97,6 +101,9 @@ void Body::ApplyCollisionExit(IntersectionData data)
     }
 }
 
+/// @brief Based on if it was already touching, or just touched once, triggers different collision functions
+/// @param other
+/// @param collisionNormal
 void Body::ApplyCollision(Body *other, Vector2 collisionNormal)
 {
     bool isAlreadyIntersectingPreviousFrame{false};
@@ -142,16 +149,24 @@ void Body::ApplyCollision(Body *other, Vector2 collisionNormal)
     }
 }
 
+/// @brief When the intersection has ended between two objectsm the old data should be deleted
+/// @param other
+/// @param data
 void Body::OnTriggerExited(Body *other, IntersectionData data)
 {
     delete data.intersectorOldData;
 }
 
+/// @brief When the intersection has ended between two objectsm the old data should be deleted
+/// @param other
+/// @param data
 void Body::OnCollisionEnded(Body *other, IntersectionData data)
 {
     delete data.intersectorOldData;
 }
 
+/// @brief Calculates the body's density based on its mass and volume
+/// @return
 double Body::GetDensity()
 {
     return mass / size.GetCubicVolume();

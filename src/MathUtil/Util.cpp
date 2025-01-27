@@ -80,27 +80,10 @@ namespace MathUtil
         return Vector2{b - a}.Normalize();
     }
 
-    double SnapDirectionToEightDirections(double val)
-    {
-        const double targets[] = {0, 1, -1, 0.5, -0.5};
-        int n = sizeof(targets) / sizeof(targets[0]);
-
-        double min_diff = INFINITY;
-        double result;
-
-        for (int i = 0; i < n; ++i)
-        {
-            double diff = std::abs(val - targets[i]);
-            if (diff < min_diff)
-            {
-                min_diff = diff;
-                result = targets[i];
-            }
-        }
-
-        return result;
-    }
-
+    /// @brief Returns a random double value with the set minimum and maximum constraints
+    /// @param min
+    /// @param max
+    /// @return
     double RandomRange(double min, double max)
     {
         std::random_device rd;
@@ -109,12 +92,16 @@ namespace MathUtil
         return dis(gen);
     }
 
-    std::string intToStringWithZeros(int n, int length)
+    /// @brief Returns a string, filled with the given number n. and fills up the remaining space with zeros
+    /// @param n
+    /// @param length
+    /// @return
+    std::string intToStringWithZeros(int num, int length)
     {
-        std::string str = std::to_string(abs(n));
+        std::string str = std::to_string(abs(num));
         while (str.length() < length)
             str = "0" + str;
-        if (n < 0)
+        if (num < 0)
             str = "-" + str;
         return str;
     }

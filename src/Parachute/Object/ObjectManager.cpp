@@ -13,13 +13,15 @@ ObjectManager::~ObjectManager()
 
 void ObjectManager::Update()
 {
-    collisionSystem.Update(std::vector<Object *>{objects});
+    // Run rendering and physics logics per object
     for (Object *object : objects)
     {
         object->Update();
     }
+    // Check for collisions
+    collisionSystem.Update(std::vector<Object *>{objects});
 
-    // cleanup
+    // cleanup any objects that need to be deleted
     for (int i = objects.size() - 1; i >= 0; i--)
     {
         for (Object *toBeDeleted : objectsToBeDeleted)
@@ -31,6 +33,7 @@ void ObjectManager::Update()
     objectsToBeDeleted.clear();
 }
 
+/// @brief Tells the manager that all current objects need to be deleted later
 void ObjectManager::ClearObjects()
 {
     for (Object *object : objects)
@@ -39,17 +42,25 @@ void ObjectManager::ClearObjects()
     }
 }
 
+/// @brief adds a object reference to the should be removed/deleted list
+/// @param object
 void ObjectManager::Delete(Object *object)
 {
     objectsToBeDeleted.push_back(object);
 }
 
+/// @brief Adds a reference to the list of all game objects that this manager keeps track off
+/// @param object
 void ObjectManager::Initialize(Object *object)
 {
     if (object != nullptr)
         objects.push_back(object);
 }
 
+/// @brief Adds a reference to the list of all game objects that this manager keeps track off
+/// And sets its position
+/// @param object
+/// @param position
 void ObjectManager::Initialize(Object *object, Vector2 position)
 {
     object->position = position;

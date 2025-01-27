@@ -9,7 +9,6 @@ Player::Player()
     size = DEFAULT_PLAYER_SIZE;
     mass = DEFAULT_PLAYER_MASS;
     this->activeStates.push_back(GameState::Playing);
-    this->activeStates.push_back(GameState::Pauzed);
 }
 
 Player::Player(Game *game) : Player()
@@ -21,6 +20,7 @@ void Player::Update()
 {
     if (visable)
     {
+        // handle user inputs
         if (game->inputManager.IsKeyBeingPressed("Left"))
         {
             AddImpulse(V2_LEFT * speed);
@@ -51,7 +51,7 @@ void Player::Update()
         shape.setPosition(pos);
         game->window.draw(shape);
     }
-    RigidBody::Update();
+    RigidBody::Update(); // update physics and base rendering in between rendering of wheels and window, to make the wheels look like they're underneath the car
     if (visable)
     {
         // temp window for my terrible looking car
@@ -66,6 +66,10 @@ void Player::Update()
         game->window.draw(shape);
     }
 }
+
+/// @brief On collision check if collision occured with an enemy, if so apply logic for enemy hit
+/// @param other
+/// @param collisionNormal
 void Player::OnColliding(Body *other, Vector2 collisionNormal)
 {
     if (dynamic_cast<Enemy *>(other) != nullptr)

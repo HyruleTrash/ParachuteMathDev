@@ -3,6 +3,7 @@
 
 namespace Parachute
 {
+    /// @brief Holds bounding box information, and is calculated based on object size
     class Bounds
     {
     public:

@@ -6,8 +6,10 @@
 
 namespace Parachute
 {
+    // forward declaration of Game object
     class Game;
 
+    /// @brief Game object, used to keep track of all in game objects
     class Object
     {
     private:
