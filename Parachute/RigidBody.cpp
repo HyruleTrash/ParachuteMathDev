@@ -6,7 +6,7 @@ void RigidBody::Update()
 {
     // // if it has a mass, and is supposed to be moving
     // std::cout << velocity << ", " << position << std::endl;
-    if (mass != 0 && ((forces.GetMagnitude() != 0 || impulses.GetMagnitude() != 0) || velocity != MathUtil::V2_ZERO))
+    if (mass != 0 && ((forces.GetMagnitude() != 0 || impulses.GetMagnitude() != 0) || velocity != Vector2::ZERO))
     {
         Vector2 totalForce{forces};
 
@@ -34,8 +34,8 @@ void RigidBody::Update()
         velocity = nextVelocity;
 
         // reset forces
-        forces = MathUtil::V2_ZERO;
-        impulses = MathUtil::V2_ZERO;
+        forces = Vector2::ZERO;
+        impulses = Vector2::ZERO;
     }
 
     if (forces.GetMagnitude() == 0 && impulses.GetMagnitude() == 0)

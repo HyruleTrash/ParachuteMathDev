@@ -24,5 +24,5 @@ CollisionTestResult CollisionTest::TestAABB()
         return CollisionTestResult{true, collisionNormalA, collisionNormalB};
     }
     else
-        return CollisionTestResult{false, MathUtil::V2_ZERO, MathUtil::V2_ZERO};
+        return CollisionTestResult{false, Vector2::ZERO, Vector2::ZERO};
 }

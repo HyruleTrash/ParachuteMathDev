@@ -6,14 +6,23 @@ namespace MathUtil
 {
     class Vector2
     {
-    private:
     public:
-        constexpr Vector2();
+        double x = 0;
+        double y = 0;
+
+        static const Vector2 ZERO;
+        static const Vector2 UP;
+        static const Vector2 DOWN;
+        static const Vector2 LEFT;
+        static const Vector2 RIGHT;
+        
+    public:
+        constexpr Vector2() : x(0.0), y(0.0) {}
         constexpr Vector2(Vector2 *);
         constexpr Vector2(double x, double y);
         constexpr Vector2(float x, float y);
         constexpr Vector2(int x, int y);
-        ~Vector2() = default;
+
         Vector2 &operator=(const Vector2 &other);
         Vector2 operator+(const Vector2 &other);
         Vector2 operator-(const Vector2 &other);
@@ -45,15 +54,5 @@ namespace MathUtil
         double GetMagnitude();
         double GetCubicVolume();
         Vector2 Normalize();
-        
-    public:
-        double x = 0;
-        double y = 0;
     };
-
-    constexpr static Vector2 V2_ZERO{0, 0};
-    constexpr static Vector2 V2_UP{0, -1};
-    constexpr static Vector2 V2_DOWN{0, 1};
-    constexpr static Vector2 V2_LEFT{-1, 0};
-    constexpr static Vector2 V2_RIGHT{1, 0};
 }

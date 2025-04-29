@@ -19,21 +19,21 @@ void Player::Update()
 
     if (game->inputManager.IsKeyBeingPressed("Left"))
     {
-        AddImpulse(MathUtil::V2_LEFT * speed);
+        AddImpulse(Vector2::LEFT * speed);
     }
 
     if (game->inputManager.IsKeyBeingPressed("Right"))
     {
-        AddImpulse(MathUtil::V2_RIGHT * speed);
+        AddImpulse(Vector2::RIGHT * speed);
     }
 
     if (game->inputManager.IsKeyBeingPressed("Up"))
     {
-        AddImpulse(MathUtil::V2_UP * speed);
+        AddImpulse(Vector2::UP * speed);
     }
 
     if (game->inputManager.IsKeyBeingPressed("Down"))
     {
-        AddImpulse(MathUtil::V2_DOWN * speed);
+        AddImpulse(Vector2::DOWN * speed);
     }
 }

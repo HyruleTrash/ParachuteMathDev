@@ -74,22 +74,22 @@ Vector2 Bounds::GetClosestNormal(Vector2 aPos, Vector2 bPos, Bounds &bBounds)
     if (aPos.y + aBounds.B_Side.y > bPos.y + bBounds.T_Side.y &&
         aPos.y + aBounds.T_Side.y < bPos.y + bBounds.T_Side.y)
     {
-        return MathUtil::V2_DOWN;
+        return Vector2::DOWN;
     }
     else if (aPos.y + aBounds.T_Side.y < bPos.y + bBounds.B_Side.y &&
              aPos.y + aBounds.B_Side.y > bPos.y + bBounds.B_Side.y)
     {
-        return MathUtil::V2_UP;
+        return Vector2::UP;
     }
     if (aPos.x + aBounds.R_Side.x > bPos.x + bBounds.L_Side.x &&
         aPos.x + aBounds.L_Side.x < bPos.x + bBounds.L_Side.x)
     {
-        return MathUtil::V2_RIGHT;
+        return Vector2::RIGHT;
     }
     else if (aPos.x + aBounds.L_Side.x < bPos.x + bBounds.R_Side.x &&
              aPos.x + aBounds.R_Side.x > bPos.x + bBounds.R_Side.x)
     {
-        return MathUtil::V2_LEFT;
+        return Vector2::LEFT;
     }
-    return MathUtil::V2_ZERO;
+    return Vector2::ZERO;
 }

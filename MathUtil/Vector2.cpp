@@ -5,9 +5,11 @@
 
 using namespace MathUtil;
 
-constexpr Vector2::Vector2()
-{
-}
+const Vector2 Vector2::ZERO  = Vector2(0.0, 0.0);
+const Vector2 Vector2::UP    = Vector2(0.0, -1.0);
+const Vector2 Vector2::DOWN  = Vector2(0.0, 1.0);
+const Vector2 Vector2::LEFT  = Vector2(-1.0, 0.0);
+const Vector2 Vector2::RIGHT = Vector2(1.0, 0.0);
 
 constexpr Vector2::Vector2(Vector2 *other)
 {
@@ -21,13 +23,9 @@ constexpr Vector2::Vector2(double x, double y)
     this->y = y;
 }
 
-constexpr Vector2::Vector2(float x, float y) : Vector2((double)x, (double)y)
-{
-}
+constexpr Vector2::Vector2(float x, float y) : Vector2((double)x, (double)y) {}
 
-constexpr Vector2::Vector2(int x, int y) : Vector2((double)x, (double)y)
-{
-}
+constexpr Vector2::Vector2(int x, int y) : Vector2((double)x, (double)y) {}
 
 std::ostream &operator<<(std::ostream &os, const Vector2 &vec)
 {
@@ -162,7 +160,7 @@ Vector2 &Vector2::operator*=(const Vector2 &other)
 
 Vector2 &Vector2::operator/=(const Vector2 &other)
 {
-    if (other == V2_ZERO)
+    if (other == ZERO)
     {
         this->x = 0;
         this->y = 0;
