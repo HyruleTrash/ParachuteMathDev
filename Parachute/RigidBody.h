@@ -11,8 +11,8 @@ namespace Parachute
     class RigidBody : public Body
     {
     private:
-        constexpr static Vector2 MAX_VELOCITY{200, 200};
-        constexpr static Vector2 MIN_VELOCITY{0.001, 0.001};
+        static const Vector2 MAX_VELOCITY;
+        static const Vector2 MIN_VELOCITY;
         Vector2 forces{Vector2::ZERO};
         Vector2 impulses{Vector2::ZERO};
         Vector2 forcesPreviousFrame{Vector2::ZERO};

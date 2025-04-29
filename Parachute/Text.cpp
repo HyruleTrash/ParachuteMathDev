@@ -51,6 +51,11 @@ void Text::Update()
     }
 }
 
+GameState Text::GetGameState()
+{
+    return game->gameState;
+}
+
 void Text::SetTextData()
 {
     textObj->setString(text);

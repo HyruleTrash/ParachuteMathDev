@@ -2,6 +2,9 @@
 
 using namespace Parachute;
 
+const Vector2 RigidBody::MAX_VELOCITY{200, 200};
+const Vector2 RigidBody::MIN_VELOCITY{0.001, 0.001};
+
 void RigidBody::Update()
 {
     // // if it has a mass, and is supposed to be moving

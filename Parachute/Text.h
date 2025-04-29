@@ -19,7 +19,7 @@ namespace Parachute
         Text(sf::Color, float, std::string, Game *);
         ~Text() = default;
         void Update() override;
-        GameState GetGameState() override { return game->gameState; };
+        GameState GetGameState() override;
         void SetTextData();
         sf::Font font;
         std::unique_ptr<sf::Text> textObj;
