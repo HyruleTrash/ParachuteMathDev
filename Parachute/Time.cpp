@@ -1,0 +1,16 @@
+#include "Time.h"
+
+using namespace Parachute;
+
+Time::Time()
+{
+    startTime = std::chrono::high_resolution_clock::now();
+}
+
+void Time::Update()
+{
+    auto now = std::chrono::high_resolution_clock::now();
+    double t_runTime = std::chrono::duration_cast<std::chrono::duration<double>>(now - startTime).count();
+    deltaTime = t_runTime - runTime;
+    runTime = t_runTime;
+}
