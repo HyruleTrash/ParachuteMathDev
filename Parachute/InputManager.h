@@ -6,6 +6,7 @@
 
 namespace Parachute
 {
+    /// @brief The input manager keeps track of all inputs used in the game
     class InputManager
     {
     public:

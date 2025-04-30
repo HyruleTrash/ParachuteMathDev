@@ -6,6 +6,7 @@
 
 namespace Parachute
 {
+    /// @brief Loops through all objects, and checks whatever any are colliding
     class CollisionSystem
     {
     public:

@@ -2,17 +2,22 @@
 
 namespace Parachute
 {
-    void Parachute::Object::Update()
+    void Object::Update()
     {
+        // update bounds
         bounds = {size};
 
-        visible = false;
-        for (GameState state : activeStates)
+        // sets the object's visibility depending on the game state
+        if (checkGameState)
         {
-            if (state == GetGameState())
+            visible = false;
+            for (GameState state : activeStates)
             {
-                visible = true;
-                break;
+                if (state == GetGameState())
+                {
+                    visible = true;
+                    break;
+                }
             }
         }
     }

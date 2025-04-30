@@ -7,6 +7,7 @@
 
 namespace Parachute
 {
+    /// @brief The text/UI object used within this game. Holds information relative to text rendering
     class Text : public Object
     {
     private:

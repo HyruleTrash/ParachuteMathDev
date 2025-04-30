@@ -8,7 +8,6 @@ namespace Parachute
     void RigidBody::Update()
     {
         // // if it has a mass, and is supposed to be moving
-        // std::cout << velocity << ", " << position << std::endl;
         if (mass != 0 && ((forces.GetMagnitude() != 0 || impulses.GetMagnitude() != 0) || velocity != Vector2::ZERO))
         {
             Vector2 totalForce{forces};
@@ -52,6 +51,13 @@ namespace Parachute
         Body::Update();
     }
 
+    /// @brief Used for collision distance sorting, checkout the collision system class for more
+    /// @return
+    double RigidBody::CollisionOffset()
+    {
+        return velocity.GetMagnitude();
+    }
+
     void RigidBody::AddForce(Vector2 force)
     {
         forces += force;
@@ -64,9 +70,12 @@ namespace Parachute
 
     void RigidBody::OnColliding(Body *other, Vector2 collisionNormal)
     {
+        if (!collisionEnabled)
+            return;
+
         double density = other->density; // currently goes unused, can be used for thick air, or fluids
 
-        // base collision
+        // base collision repelant force, to make sure neither bodies are intersecting
         Vector2 toRemove{collisionNormal * MathUtil::Util::Dot(velocity, collisionNormal)};
         AddImpulse(-toRemove);
 
@@ -82,10 +91,11 @@ namespace Parachute
             AddForce(-frictionDir * forces.GetMagnitude() * other->friction);
         }
 
+        // apply repelant force, depends on body type
         if (dynamic_cast<StaticBody *>(other) != nullptr)
         {
-            const double bouncyness{0.25};
-            AddImpulse(collisionNormal * velocity.GetMagnitude() * bouncyness);
+            StaticBody *otherStaticBody = dynamic_cast<StaticBody *>(other);
+            AddImpulse(collisionNormal * velocity.GetMagnitude() * otherStaticBody->bouncyness);
         }
         else if (dynamic_cast<RigidBody *>(other) != nullptr)
         {

@@ -3,6 +3,7 @@
 
 namespace Parachute
 {
+    /// @brief Logs the application start time, then calculates the time it takes between each frame, every frame
     class Time
     {
     private:

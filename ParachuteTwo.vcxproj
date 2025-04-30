@@ -568,6 +568,9 @@
       <AdditionalIncludeDirectories>Include</AdditionalIncludeDirectories>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="Parachute\Enemy.cpp" />
+    <ClCompile Include="Parachute\EnemyDeathTrigger.cpp" />
+    <ClCompile Include="Parachute\EnemySpawner.cpp" />
     <ClCompile Include="Parachute\Game.cpp">
       <RuntimeLibrary>MultiThreadedDebugDll</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -1436,6 +1439,9 @@
     <ClInclude Include="Parachute\CollisionSystem.h" />
     <ClInclude Include="Parachute\CollisionTest.h" />
     <ClInclude Include="Parachute\CollisionTestResult.h" />
+    <ClInclude Include="Parachute\Enemy.h" />
+    <ClInclude Include="Parachute\EnemyDeathTrigger.h" />
+    <ClInclude Include="Parachute\EnemySpawner.h" />
     <ClInclude Include="Parachute\Game.h" />
     <ClInclude Include="Parachute\GameState.h" />
     <ClInclude Include="Parachute\Input.h" />

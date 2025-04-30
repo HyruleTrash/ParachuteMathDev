@@ -1,4 +1,5 @@
-#include "./bounds.h"
+#include "Bounds.h"
+#include "../MathUtil/Util.h"
 
 namespace Parachute
 {
@@ -45,51 +46,38 @@ namespace Parachute
         return result;
     }
 
-    Vector2 Bounds::GetClosestNormal(Vector2 aPos, Vector2 bPos, Bounds &bBounds)
+    /// @brief checks the distance between each side, and returns the normal of the closest one
+    /// sadly only works with cubes that all hold a equal lenght and width.
+    /// @param aPos
+    /// @param bPos
+    /// @return
+    Vector2 Bounds::GetClosestNormal(Vector2 aPos, Vector2 bPos)
     {
-        Bounds aBounds = Bounds{this};
-        // Vector2 sidesA[] = {
-        //     Vector2{aPos + aBounds.L_Side},
-        //     Vector2{aPos + aBounds.R_Side},
-        //     Vector2{aPos + aBounds.T_Side},
-        //     Vector2{aPos + aBounds.B_Side},
-        // };
-        // Vector2 sidesB[] = {
-        //     Vector2{bPos + bBounds.L_Side},
-        //     Vector2{bPos + bBounds.R_Side},
-        //     Vector2{bPos + bBounds.T_Side},
-        //     Vector2{bPos + bBounds.B_Side},
-        // };
-        // Vector2 sides[] = {
-        //     Vector2{aBounds.L_Side},
-        //     Vector2{aBounds.R_Side},
-        //     Vector2{aBounds.T_Side},
-        //     Vector2{aBounds.B_Side},
-        //     Vector2{bBounds.L_Side},
-        //     Vector2{bBounds.R_Side},
-        //     Vector2{bBounds.T_Side},
-        //     Vector2{bBounds.B_Side},
-        // };
+        Vector2 sidesAndCorners[] = {
+            // Vector2{aPos + this->TL_Corner},
+            // Vector2{aPos + this->TR_Corner},
+            // Vector2{aPos + this->BL_Corner},
+            // Vector2{aPos + this->BR_Corner},
+            Vector2{aPos + this->L_Side},
+            Vector2{aPos + this->R_Side},
+            Vector2{aPos + this->T_Side},
+            Vector2{aPos + this->B_Side},
+        };
+        const int positionArraySize = sizeof(sidesAndCorners) / sizeof(sidesAndCorners[0]);
 
-        if (aPos.y + aBounds.B_Side.y > bPos.y + bBounds.T_Side.y &&
-            aPos.y + aBounds.T_Side.y < bPos.y + bBounds.T_Side.y)
+        double distances[positionArraySize];
+        double smallestDist{INFINITY};
+        for (size_t i = 0; i < positionArraySize; i++)
         {
-            return Vector2::DOWN;
+            distances[i] = MathUtil::Util::GetDistance(bPos, sidesAndCorners[i]);
+            smallestDist = std::min(distances[i], smallestDist);
         }
-        else if (aPos.y + aBounds.T_Side.y < bPos.y + bBounds.B_Side.y &&
-                 aPos.y + aBounds.B_Side.y > bPos.y + bBounds.B_Side.y)
+        for (size_t i = 0; i < positionArraySize; i++)
         {
-            return Vector2::UP;
-        }
-        if (aPos.x + aBounds.R_Side.x > bPos.x + bBounds.L_Side.x &&
-            aPos.x + aBounds.L_Side.x < bPos.x + bBounds.L_Side.x)
-        {
-            return Vector2::RIGHT;
-        }
-        else if (aPos.x + aBounds.L_Side.x < bPos.x + bBounds.R_Side.x &&
-                 aPos.x + aBounds.R_Side.x > bPos.x + bBounds.R_Side.x)
-        {
-            return Vector2::LEFT;
+            if (distances[i] == smallestDist)
+            {
+                return Vector2{sidesAndCorners[i] - aPos}.Normalize();
+            }
         }
         return Vector2::ZERO;
     }

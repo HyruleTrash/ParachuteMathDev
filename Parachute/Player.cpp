@@ -1,11 +1,13 @@
 #include "./Player.h"
+#include "Enemy.h"
 
 namespace Parachute
 {
     Player::Player()
     {
-        size = Vector2{40, 40};
-        mass = 15;
+        size = DEFAULT_PLAYER_SIZE;
+        mass = DEFAULT_PLAYER_MASS;
+        this->activeStates.push_back(GameState::Playing);
     }
 
     Player::Player(Game *game) : Player()
@@ -15,26 +17,66 @@ namespace Parachute
 
     void Player::Update()
     {
-        RigidBody::Update();
-
-        if (game->inputManager.IsKeyBeingPressed("Left"))
+        if (visible)
         {
-            AddImpulse(Vector2::LEFT * speed);
-        }
+            // handle user inputs
+            if (game->inputManager.IsKeyBeingPressed("Left"))
+            {
+                AddImpulse(Vector2::LEFT * speed);
+            }
 
-        if (game->inputManager.IsKeyBeingPressed("Right"))
-        {
-            AddImpulse(Vector2::RIGHT * speed);
-        }
+            if (game->inputManager.IsKeyBeingPressed("Right"))
+            {
+                AddImpulse(Vector2::RIGHT * speed);
+            }
 
-        if (game->inputManager.IsKeyBeingPressed("Up"))
-        {
-            AddImpulse(Vector2::UP * speed);
+            // temp wheels for my terrible looking car
+            Vector2 sizeWheel{size.x / 3, size.y / 2};
+            sf::RectangleShape shape({(float)sizeWheel.x, (float)sizeWheel.y});
+            shape.setFillColor(sf::Color{100, 100, 100});
+            Vector2 origin{sizeWheel / 2};
+            shape.setOrigin({(float)origin.x, (float)origin.y});
+            sizeWheel *= Vector2{1.1, 0.9};
+            sf::Vector2f pos{(float)(position.x - sizeWheel.x), (float)(position.y - sizeWheel.y)};
+            shape.setPosition(pos);
+            game->window.draw(shape);
+            pos = sf::Vector2f{(float)(position.x - sizeWheel.x), (float)(position.y + sizeWheel.y)};
+            shape.setPosition(pos);
+            game->window.draw(shape);
+            pos = sf::Vector2f{(float)(position.x + sizeWheel.x), (float)(position.y + sizeWheel.y)};
+            shape.setPosition(pos);
+            game->window.draw(shape);
+            pos = sf::Vector2f{(float)(position.x + sizeWheel.x), (float)(position.y - sizeWheel.y)};
+            shape.setPosition(pos);
+            game->window.draw(shape);
         }
+        RigidBody::Update(); // update physics and base rendering in between rendering of wheels and window, to make the wheels look like they're underneath the car
+        if (visible)
+        {
+            // temp window for my terrible looking car
+            Vector2 sizeWindow{size.x / 1.2, size.y / 2};
+            sf::RectangleShape shape({(float)sizeWindow.x, (float)sizeWindow.y});
+            shape.setFillColor(sf::Color{100, 100, 255});
+            Vector2 origin{sizeWindow / 2};
+            shape.setOrigin({(float)origin.x, (float)origin.y});
+            sizeWindow *= Vector2{0.0, 0.8};
+            sf::Vector2f pos{(float)(position.x - sizeWindow.x), (float)(position.y - sizeWindow.y)};
+            shape.setPosition(pos);
+            game->window.draw(shape);
+        }
+    }
 
-        if (game->inputManager.IsKeyBeingPressed("Down"))
+    /// @brief On collision check if collision occured with an enemy, if so apply logic for enemy hit
+    /// @param other
+    /// @param collisionNormal
+    void Player::OnColliding(Body *other, Vector2 collisionNormal)
+    {
+        if (dynamic_cast<Enemy *>(other) != nullptr)
         {
-            AddImpulse(Vector2::DOWN * speed);
+            game->RemovePoints(10);
+            game->objectManager.Delete(other);
+            return;
         }
+        RigidBody::OnColliding(other, collisionNormal);
     }
 }

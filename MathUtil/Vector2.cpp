@@ -245,5 +245,5 @@ namespace MathUtil
         if (result.y != result.y)
             result.y = 0;
         return result;
-    }
+}
 }

@@ -6,6 +6,7 @@ namespace Parachute
     using Vector2 = MathUtil::Vector2;
     class Body;
 
+    /// @brief Holds interaction data, mostly used for retrieving old collision data
     class IntersectionData
     {
     public:

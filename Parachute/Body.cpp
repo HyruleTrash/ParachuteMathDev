@@ -4,7 +4,7 @@
 
 namespace Parachute
 {
-    Body::Body(Body *other)
+    Parachute::Body::Body(Body *other)
     {
         this->isTrigger = other->isTrigger;
         this->friction = other->friction;
@@ -18,15 +18,21 @@ namespace Parachute
 
     void Body::Update()
     {
+        if (isTrigger)
+        {
+            checkGameState = false;
+            visible = false;
+        }
         Object::Update();
         density = GetDensity();
 
         CleanUpCollision();
 
+        // render object/box if visible
         if (visible)
         {
             sf::RectangleShape shape({(float)size.x, (float)size.y});
-            shape.setFillColor(sf::Color::Green);
+            shape.setFillColor(color);
             Vector2 origin{size / 2};
             shape.setOrigin({(float)origin.x, (float)origin.y});
             sf::Vector2f pos{(float)position.x, (float)position.y};
@@ -40,13 +46,14 @@ namespace Parachute
         return game->gameState;
     }
 
-    void Body::CleanUpCollision()
-    {
-        /*
+    /// @brief
+    /*
         this is run at the start of the physics frame,
         you can consider it the end of the last frame really.
-        we clean up some data, so that it can be used again.
-        */
+        we cleanup some data, so that it can be used again.
+    */
+    void Body::CleanUpCollision()
+    {
         std::vector<IntersectionData> NoLongerIntersecting;
         for (auto bodyOld : intersectingBodiesPreviousFrame)
         {
@@ -77,6 +84,8 @@ namespace Parachute
         intersectingBodies = {};
     }
 
+    /// @brief Tells the relevant bodies that they are no longer intersecting
+    /// @param data
     void Body::ApplyCollisionExit(IntersectionData data)
     {
         Body *other = dynamic_cast<Body *>(data.intersectorPtr);
@@ -90,6 +99,9 @@ namespace Parachute
         }
     }
 
+    /// @brief Based on if it was already touching, or just touched once, triggers different collision functions
+    /// @param other
+    /// @param collisionNormal
     void Body::ApplyCollision(Body *other, Vector2 collisionNormal)
     {
         bool isAlreadyIntersectingPreviousFrame{false};
@@ -116,7 +128,6 @@ namespace Parachute
             intersectingBodies.push_back(IntersectionData{other, new Body{other}, collisionNormal});
             if (isAlreadyIntersectingPreviousFrame == false)
             {
-
                 if (isTrigger)
                 {
                     OnTriggerEntered(other);
@@ -136,16 +147,24 @@ namespace Parachute
         }
     }
 
+    /// @brief When the intersection has ended between two objectsm the old data should be deleted
+    /// @param other
+    /// @param data
     void Body::OnTriggerExited(Body *other, IntersectionData data)
     {
         delete data.intersectorOldData;
     }
 
+    /// @brief When the intersection has ended between two objectsm the old data should be deleted
+    /// @param other
+    /// @param data
     void Body::OnCollisionEnded(Body *other, IntersectionData data)
     {
         delete data.intersectorOldData;
     }
 
+    /// @brief Calculates the body's density based on its mass and volume
+    /// @return
     double Body::GetDensity()
     {
         return mass / size.GetCubicVolume();

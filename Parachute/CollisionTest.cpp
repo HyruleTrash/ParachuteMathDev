@@ -9,6 +9,8 @@ namespace Parachute
         this->b = b;
     }
 
+    /// @brief Checks if the two bounding boxes are intersecting, if so get the normals of the sides that were hit
+    /// @return
     CollisionTestResult CollisionTest::TestAABB()
     {
         if (
@@ -17,8 +19,7 @@ namespace Parachute
             a->bounds.T_Side.y + a->position.y < b->bounds.B_Side.y + b->position.y &&
             a->bounds.B_Side.y + a->position.y > b->bounds.T_Side.y + b->position.y)
         {
-            Vector2 collisionNormalA{a->bounds.GetClosestNormal(a->position, b->position, b->bounds)};
-            std::cout << collisionNormalA << std::endl;
+            Vector2 collisionNormalA{a->bounds.GetClosestNormal(a->position, b->position)};
             Vector2 collisionNormalB{-collisionNormalA};
 
             return CollisionTestResult{true, collisionNormalA, collisionNormalB};

@@ -5,6 +5,7 @@ namespace Parachute
 {
     using Vector2 = MathUtil::Vector2;
     
+    /// @brief Holds bounding box information, and is calculated based on object size
     class Bounds
     {
     public:
@@ -12,9 +13,8 @@ namespace Parachute
         Bounds(Bounds *);
         Bounds(Vector2 size);
         ~Bounds() = default;
-        friend std::ostream& operator<<(std::ostream &os, const Bounds &bounds);
         Bounds operator+(const Vector2 &other);
-        Vector2 GetClosestNormal(Vector2 aPos, Vector2 bPos, Bounds &bBounds);
+        Vector2 GetClosestNormal(Vector2 aPos, Vector2 bPos);
         Vector2 TL_Corner{};
         Vector2 TR_Corner{};
         Vector2 BL_Corner{};

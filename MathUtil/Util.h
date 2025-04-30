@@ -18,6 +18,8 @@ namespace MathUtil
         static double VectorToRadian(Vector2 a);
         static double GetDistance(Vector2 a, Vector2 b);
         static Vector2 GetDirection(Vector2 a, Vector2 b);
+        static double RandomRange(double min, double max);
+        static std::string IntToStringWithZeros(int num, int length);
         static double SnapDirectionToEightDirections(double val);
     };
 }
