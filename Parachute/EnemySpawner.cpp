@@ -5,6 +5,8 @@
 
 namespace Parachute
 {
+    using Vector2 = MathUtil::Vector2;
+    
     EnemySpawner::EnemySpawner(Game *game)
     {
         this->game = game;

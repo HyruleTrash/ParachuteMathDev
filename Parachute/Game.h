@@ -24,10 +24,10 @@ namespace Parachute
     public:
         Game(int width, int height);
         Game() : Game(400, 400) {};
-        Game(Vector2 resolution) : Game((int)resolution.x, (int)resolution.y) {};
+        Game(MathUtil::Vector2 resolution) : Game((int)resolution.x, (int)resolution.y) {}
         ~Game() = default;
         void Update();
-        Vector2 GetResolution();
+        MathUtil::Vector2 GetResolution();
         void ChangeGameState(GameState);
         void RemovePoints(double);
         Time time{};

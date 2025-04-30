@@ -3,6 +3,8 @@
 
 namespace Parachute
 {
+    using Vector2 = MathUtil::Vector2;
+    
     Bounds::Bounds(Bounds *other)
     {
         TL_Corner = other->TL_Corner;

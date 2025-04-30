@@ -2,6 +2,8 @@
 
 namespace Parachute
 {
+    using Vector2 = MathUtil::Vector2;
+    
     void Object::Update()
     {
         // update bounds

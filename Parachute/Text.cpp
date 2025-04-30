@@ -3,6 +3,8 @@
 
 namespace Parachute
 {
+    using Vector2 = MathUtil::Vector2;
+    
     Text::Text()
     {
         this->color = DEFAULT_COLOR;

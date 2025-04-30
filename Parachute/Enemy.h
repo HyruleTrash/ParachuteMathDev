@@ -8,7 +8,7 @@ namespace Parachute
     class Enemy : public RigidBody
     {
     private:
-        constexpr static Vector2 DEFAULT_ENEMY_SIZE{40, 40};
+        constexpr static MathUtil::Vector2 DEFAULT_ENEMY_SIZE{40, 40};
         constexpr static float DEFAULT_ENEMY_MASS{5};
         constexpr static sf::Color colors[]{sf::Color{139, 58, 94}, sf::Color{167, 68, 142}, sf::Color{196, 40, 76}, sf::Color{116, 0, 58}};
         std::chrono::time_point<std::chrono::high_resolution_clock> spawnTimeStamp;
@@ -18,9 +18,9 @@ namespace Parachute
         Enemy(Game *);
         ~Enemy() = default;
         void Update() override;
-        void OnColliding(Body *other, Vector2 collisionNormal) override;
-        void OnCollided(Body *other, Vector2 collisionNormal) override;
-        Vector2 speed{300, 500};
+        void OnColliding(Body *other, MathUtil::Vector2 collisionNormal) override;
+        void OnCollided(Body *other, MathUtil::Vector2 collisionNormal) override;
+        MathUtil::Vector2 speed{300, 500};
         bool directionLeft;
         double wakeUpThreshold{0.1};
     };

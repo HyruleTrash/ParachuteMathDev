@@ -20,6 +20,6 @@ namespace Parachute
         void ClearObjects();
         void Delete(Object *);
         void Initialize(Object *object);
-        void Initialize(Object *object, Vector2 position);
+        void Initialize(Object *object, MathUtil::Vector2 position);
     };
 }

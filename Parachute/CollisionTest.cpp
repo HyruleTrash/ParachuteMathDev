@@ -3,6 +3,8 @@
 
 namespace Parachute
 {
+    using Vector2 = MathUtil::Vector2;
+    
     CollisionTest::CollisionTest(Object *a, Object *b)
     {
         this->a = a;

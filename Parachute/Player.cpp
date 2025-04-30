@@ -3,6 +3,8 @@
 
 namespace Parachute
 {
+    using Vector2 = MathUtil::Vector2;
+    
     Player::Player()
     {
         size = DEFAULT_PLAYER_SIZE;

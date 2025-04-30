@@ -4,6 +4,8 @@
 
 namespace Parachute
 {
+    using Vector2 = MathUtil::Vector2;
+    
     Enemy::Enemy()
     {
         size = DEFAULT_ENEMY_SIZE;

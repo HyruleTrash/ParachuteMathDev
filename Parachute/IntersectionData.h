@@ -3,7 +3,6 @@
 
 namespace Parachute
 {
-    using Vector2 = MathUtil::Vector2;
     class Body;
 
     /// @brief Holds interaction data, mostly used for retrieving old collision data
@@ -11,9 +10,9 @@ namespace Parachute
     {
     public:
         IntersectionData() = default;
-        IntersectionData(Body *intersectorPtr, Body *intersectorOldData, Vector2 appliedNormalVector);
+        IntersectionData(Body *intersectorPtr, Body *intersectorOldData, MathUtil::Vector2 appliedNormalVector);
         Body *intersectorPtr;
         Body *intersectorOldData;
-        Vector2 appliedNormalVector;
+        MathUtil::Vector2 appliedNormalVector;
     };
 }

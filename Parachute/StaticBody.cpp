@@ -2,6 +2,8 @@
 
 namespace Parachute
 {
+    using Vector2 = MathUtil::Vector2;
+    
     StaticBody::StaticBody(Vector2 size, Game *game)
     {
         this->size = size;

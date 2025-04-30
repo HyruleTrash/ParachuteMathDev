@@ -2,6 +2,8 @@
 
 namespace Parachute
 {
+    using Vector2 = MathUtil::Vector2;
+    
     ObjectManager::~ObjectManager()
     {
         for (Object *object : objects)

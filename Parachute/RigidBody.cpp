@@ -2,6 +2,8 @@
 
 namespace Parachute
 {
+    using Vector2 = MathUtil::Vector2;
+    
     const Vector2 RigidBody::MAX_VELOCITY{200, 200};
     const Vector2 RigidBody::MIN_VELOCITY{0.001, 0.001};
 

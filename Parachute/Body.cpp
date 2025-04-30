@@ -4,6 +4,8 @@
 
 namespace Parachute
 {
+    using Vector2 = MathUtil::Vector2;
+    
     Parachute::Body::Body(Body *other)
     {
         this->isTrigger = other->isTrigger;

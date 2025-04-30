@@ -6,7 +6,6 @@
 
 namespace Parachute
 {
-    using Vector2 = MathUtil::Vector2;
     // forward declaration of Game object
     class Game;
 
@@ -22,8 +21,8 @@ namespace Parachute
         bool visible{true};
         bool checkGameState{true};
         Game *game;
-        Vector2 position{};
-        Vector2 size{};
+        MathUtil::Vector2 position{};
+        MathUtil::Vector2 size{};
         Bounds bounds;
         std::vector<GameState> activeStates{};
     };

@@ -6,6 +6,8 @@
 
 namespace Parachute
 {
+    using Vector2 = MathUtil::Vector2;
+    
     Game::Game(int width, int height)
     {
         resolution = Vector2{width, height};
