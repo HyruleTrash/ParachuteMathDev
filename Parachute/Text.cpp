@@ -4,6 +4,8 @@
 namespace Parachute
 {
     using Vector2 = MathUtil::Vector2;
+
+    const std::string Text::DEFAULT_FONT_LOCATION = "Assets/Fonts/AldotheApache.ttf";
     
     Text::Text()
     {

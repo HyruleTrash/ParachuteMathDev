@@ -11,7 +11,7 @@ namespace Parachute
     class Text : public Object
     {
     private:
-        constexpr static auto DEFAULT_FONT_LOCATION{"Assets/Fonts/AldotheApache.ttf"};
+        static const std::string DEFAULT_FONT_LOCATION;
         constexpr static sf::Color DEFAULT_COLOR{sf::Color::White};
         constexpr static float DEFAULT_TEXT_SIZE{20};
 
