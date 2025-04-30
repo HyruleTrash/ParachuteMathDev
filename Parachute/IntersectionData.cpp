@@ -1,11 +1,12 @@
 #include "./IntersectionData.h"
 #include "IntersectionData.h"
 
-using namespace Parachute;
-
-IntersectionData::IntersectionData(Body *intersectorPtr, Body *intersectorOldData, Vector2 appliedNormalVector)
+namespace Parachute
 {
-    this->intersectorPtr = intersectorPtr;
-    this->intersectorOldData = intersectorOldData;
-    this->appliedNormalVector = appliedNormalVector;
+    IntersectionData::IntersectionData(Body *intersectorPtr, Body *intersectorOldData, Vector2 appliedNormalVector)
+    {
+        this->intersectorPtr = intersectorPtr;
+        this->intersectorOldData = intersectorOldData;
+        this->appliedNormalVector = appliedNormalVector;
+    }
 }

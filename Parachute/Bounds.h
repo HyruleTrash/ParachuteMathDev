@@ -12,6 +12,7 @@ namespace Parachute
         Bounds(Bounds *);
         Bounds(Vector2 size);
         ~Bounds() = default;
+        friend std::ostream& operator<<(std::ostream &os, const Bounds &bounds);
         Bounds operator+(const Vector2 &other);
         Vector2 GetClosestNormal(Vector2 aPos, Vector2 bPos, Bounds &bBounds);
         Vector2 TL_Corner{};

@@ -1,18 +1,19 @@
 #include "Object.h"
 
-using namespace Parachute;
-
-void Parachute::Object::Update()
+namespace Parachute
 {
-    bounds = {size};
-
-    visible = false;
-    for (GameState state : activeStates)
+    void Parachute::Object::Update()
     {
-        if (state == GetGameState())
+        bounds = {size};
+
+        visible = false;
+        for (GameState state : activeStates)
         {
-            visible = true;
-            break;
+            if (state == GetGameState())
+            {
+                visible = true;
+                break;
+            }
         }
     }
 }
