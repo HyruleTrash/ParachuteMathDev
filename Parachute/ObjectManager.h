@@ -9,7 +9,7 @@ namespace Parachute
     {
     private:
         std::vector<Object *> objects;
-        CollisionSystem collisionSystem{};
+        CollisionSystem collisionSystem = CollisionSystem();
 
     public:
         ObjectManager() = default;

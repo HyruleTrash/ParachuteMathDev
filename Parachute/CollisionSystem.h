@@ -2,7 +2,6 @@
 #include <vector>
 #include "CollisionTest.h"
 #include "Object.h"
-#include "Body.h"
 #include "../MathUtil/Util.h"
 
 namespace Parachute

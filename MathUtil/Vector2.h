@@ -23,6 +23,7 @@ namespace MathUtil
         constexpr Vector2(float x, float y);
         constexpr Vector2(int x, int y);
 
+        friend std::ostream& operator<<(std::ostream& os, const Vector2& vec);
         Vector2 &operator=(const Vector2 &other);
         Vector2 operator+(const Vector2 &other);
         Vector2 operator-(const Vector2 &other);

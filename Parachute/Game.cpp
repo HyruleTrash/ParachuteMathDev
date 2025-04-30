@@ -1,4 +1,6 @@
 #include "Game.h"
+#include "Player.h"
+#include "StaticBody.h"
 
 using namespace Parachute;
 

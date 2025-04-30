@@ -7,8 +7,6 @@
 #include "InputManager.h"
 #include "Input.h"
 #include "Text.h"
-#include "Player.h"
-#include "StaticBody.h"
 
 namespace Parachute
 {
