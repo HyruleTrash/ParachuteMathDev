@@ -96,7 +96,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)\Include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalModuleDependencies>Include</AdditionalModuleDependencies>
+      <AdditionalModuleDependencies>$(SolutionDir)\Include</AdditionalModuleDependencies>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -116,7 +116,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)\Include</AdditionalIncludeDirectories>
-      <AdditionalModuleDependencies>Include</AdditionalModuleDependencies>
+      <AdditionalModuleDependencies>$(SolutionDir)\Include</AdditionalModuleDependencies>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -138,7 +138,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)\Include</AdditionalIncludeDirectories>
-      <AdditionalModuleDependencies>Include</AdditionalModuleDependencies>
+      <AdditionalModuleDependencies>$(SolutionDir)\Include</AdditionalModuleDependencies>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -162,7 +162,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)\Include</AdditionalIncludeDirectories>
-      <AdditionalModuleDependencies>Include</AdditionalModuleDependencies>
+      <AdditionalModuleDependencies>$(SolutionDir)\Include</AdditionalModuleDependencies>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

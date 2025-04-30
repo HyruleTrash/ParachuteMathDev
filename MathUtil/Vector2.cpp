@@ -1,4 +1,3 @@
-#include "./Vector2.h"
 #include <iostream>
 #include <cmath>
 #include "Vector2.h"
@@ -10,22 +9,6 @@ namespace MathUtil
     const Vector2 Vector2::DOWN  = Vector2(0.0, 1.0);
     const Vector2 Vector2::LEFT  = Vector2(-1.0, 0.0);
     const Vector2 Vector2::RIGHT = Vector2(1.0, 0.0);
-
-    constexpr Vector2::Vector2(Vector2 *other)
-    {
-        this->x = other->x;
-        this->y = other->y;
-    }
-
-    constexpr Vector2::Vector2(double x, double y)
-    {
-        this->x = x;
-        this->y = y;
-    }
-
-    constexpr Vector2::Vector2(float x, float y) : Vector2((double)x, (double)y) {}
-
-    constexpr Vector2::Vector2(int x, int y) : Vector2((double)x, (double)y) {}
 
     std::ostream &operator<<(std::ostream &os, const Vector2 &vec)
     {

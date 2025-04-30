@@ -1,5 +1,4 @@
 #pragma once
-#include <type_traits>
 #include <iostream>
 
 namespace MathUtil
@@ -18,10 +17,10 @@ namespace MathUtil
         
     public:
         constexpr Vector2() : x(0.0), y(0.0) {}
-        constexpr Vector2(Vector2 *);
-        constexpr Vector2(double x, double y);
-        constexpr Vector2(float x, float y);
-        constexpr Vector2(int x, int y);
+        constexpr Vector2(const Vector2 *other) : x(other->x), y(other->y) {}
+        constexpr Vector2(double x, double y) : x(x), y(y) {}
+        constexpr Vector2(float x, float y) : Vector2((double)x, (double)y) {}
+        constexpr Vector2(int x, int y) : Vector2((double)x, (double)y) {}
 
         friend std::ostream& operator<<(std::ostream& os, const Vector2& vec);
         Vector2 &operator=(const Vector2 &other);
