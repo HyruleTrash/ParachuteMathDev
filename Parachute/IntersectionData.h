@@ -10,9 +10,10 @@ namespace Parachute
     {
     public:
         IntersectionData() = default;
-        IntersectionData(Body *intersectorPtr, Body *intersectorOldData, MathUtil::Vector2 appliedNormalVector);
+        IntersectionData(Body *intersectorPtr, std::shared_ptr<Body> intersectorOldData, MathUtil::Vector2 appliedNormalVector);
+        ~IntersectionData() = default;
         Body *intersectorPtr;
-        Body *intersectorOldData;
+        std::shared_ptr<Body> intersectorOldData;
         MathUtil::Vector2 appliedNormalVector;
     };
 }

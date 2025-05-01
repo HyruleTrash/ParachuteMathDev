@@ -137,6 +137,7 @@ namespace Parachute
         }
         else if (state == GameState::End)
         {
+            _CrtDumpMemoryLeaks();
             Text *pointCounter = new Text{sf::Color::White, 30, "000", this};
             pointCounter->activeStates.push_back(GameState::End);
             objectManager.Initialize(pointCounter, Vector2{resolution.x / 2, resolution.y * 0.3});

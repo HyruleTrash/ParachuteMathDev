@@ -61,12 +61,12 @@ namespace Parachute
     void Body::CleanUpCollision()
     {
         std::vector<IntersectionData> NoLongerIntersecting;
-        for (auto bodyOld : intersectingBodiesPreviousFrame)
+        for (const auto& bodyOld : intersectingBodiesPreviousFrame)
         {
             bool found = false;
             for (size_t i = 0; i < intersectingBodies.size(); i++)
             {
-                auto body = intersectingBodies[i];
+                auto& body = intersectingBodies[i];
                 if (body.intersectorPtr == bodyOld.intersectorPtr)
                 {
                     found = true;
@@ -81,18 +81,18 @@ namespace Parachute
             }
         }
 
-        for (auto data : NoLongerIntersecting)
+        for (const auto& data : NoLongerIntersecting)
         {
             ApplyCollisionExit(data);
         }
 
-        intersectingBodiesPreviousFrame = {intersectingBodies};
+        intersectingBodiesPreviousFrame = std::move(intersectingBodies);
         intersectingBodies = {};
     }
 
     /// @brief Tells the relevant bodies that they are no longer intersecting
     /// @param data
-    void Body::ApplyCollisionExit(IntersectionData data)
+    void Body::ApplyCollisionExit(const IntersectionData& data)
     {
         Body *other = dynamic_cast<Body *>(data.intersectorPtr);
         if (isTrigger)
@@ -112,7 +112,7 @@ namespace Parachute
     {
         bool isAlreadyIntersectingPreviousFrame{false};
         bool isAlreadyIntersectingThisFrame{false};
-        for (auto body : intersectingBodiesPreviousFrame)
+        for (const auto& body : intersectingBodiesPreviousFrame)
         {
             if (body.intersectorPtr == other)
             {
@@ -120,7 +120,7 @@ namespace Parachute
                 break;
             }
         }
-        for (auto body : intersectingBodies)
+        for (const auto& body : intersectingBodies)
         {
             if (body.intersectorPtr == other)
             {
@@ -131,7 +131,7 @@ namespace Parachute
 
         if (isAlreadyIntersectingThisFrame == false)
         {
-            intersectingBodies.push_back(IntersectionData{other, new Body{other}, collisionNormal});
+            intersectingBodies.push_back(IntersectionData{other, std::make_unique<Body>(other), collisionNormal}); // store a copy of the body to remember its state
             if (isAlreadyIntersectingPreviousFrame == false)
             {
                 if (isTrigger)
@@ -151,22 +151,6 @@ namespace Parachute
                 }
             }
         }
-    }
-
-    /// @brief When the intersection has ended between two objectsm the old data should be deleted
-    /// @param other
-    /// @param data
-    void Body::OnTriggerExited(Body *other, IntersectionData data)
-    {
-        delete data.intersectorOldData;
-    }
-
-    /// @brief When the intersection has ended between two objectsm the old data should be deleted
-    /// @param other
-    /// @param data
-    void Body::OnCollisionEnded(Body *other, IntersectionData data)
-    {
-        delete data.intersectorOldData;
     }
 
     /// @brief Calculates the body's density based on its mass and volume

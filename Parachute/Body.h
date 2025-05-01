@@ -22,13 +22,13 @@ namespace Parachute
         GameState GetGameState() override;
         void CleanUpCollision();
         virtual double CollisionOffset() { return 0.0; }; // adds a offset for collision distance sorting
-        void ApplyCollisionExit(IntersectionData);
+        void ApplyCollisionExit(const IntersectionData&);
         void ApplyCollision(Body *other, MathUtil::Vector2 collisionNormal);
         virtual void OnTriggerEntered(Body *other) {};                     // called when a body enters the trigger
-        virtual void OnTriggerExited(Body *other, IntersectionData);       // called when a body has left the trigger
+        virtual void OnTriggerExited(Body* other, const IntersectionData&) {};       // called when a body has left the trigger
         virtual void OnCollided(Body *other, MathUtil::Vector2 collisionNormal) {};  // called when a body enters the collider for the first time
         virtual void OnColliding(Body *other, MathUtil::Vector2 collisionNormal) {}; // called when a body is inside of a collider
-        virtual void OnCollisionEnded(Body *other, IntersectionData);      // called when a body has left the collider
+        virtual void OnCollisionEnded(Body* other, const IntersectionData&) {};      // called when a body has left the collider
         virtual double GetDensity();
         bool collisionEnabled{true};
         sf::Color color{sf::Color::Blue};
