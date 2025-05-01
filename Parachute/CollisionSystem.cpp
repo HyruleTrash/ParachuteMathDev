@@ -30,7 +30,13 @@ namespace Parachute
         {
             Object *objectI = objects[i];
             // make sure only to check for bodies
-            Body *bodyCheckI = dynamic_cast<Body *>(objectI);
+            Body *bodyCheckI = nullptr;
+            try {
+                bodyCheckI = dynamic_cast<Body *>(objectI);
+            } catch (const std::exception& e)
+            {
+                std::cerr << "Error: " << e.what() << std::endl;
+            }
             if (bodyCheckI == nullptr)
                 continue;
             else if (bodyCheckI->collisionEnabled == false)
@@ -43,7 +49,13 @@ namespace Parachute
 
                 Object *objectJ = objects[j];
                 // make sure only to check for bodies
-                Body *bodyCheckJ = dynamic_cast<Body *>(objectJ);
+                Body *bodyCheckJ = nullptr;
+                try {
+                    bodyCheckJ = dynamic_cast<Body *>(objectJ);
+                } catch (const std::exception& e)
+                {
+                    std::cerr << "Error: " << e.what() << std::endl;
+                }
                 if (bodyCheckJ == nullptr)
                     continue;
                 else if (bodyCheckJ->collisionEnabled == false)

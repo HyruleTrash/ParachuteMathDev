@@ -20,6 +20,10 @@ namespace Parachute
 
     void Body::Update()
     {
+        if (shouldBeDeleted){
+            delete this;
+            return;
+        }
         if (isTrigger)
         {
             checkGameState = false;

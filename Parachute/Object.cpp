@@ -3,9 +3,19 @@
 namespace Parachute
 {
     using Vector2 = MathUtil::Vector2;
-    
+
+    bool Object::ShouldRun()
+    {
+        return !shouldBeDeleted;
+    }
+
     void Object::Update()
     {
+        if (shouldBeDeleted){
+            delete this;
+            return;
+        }
+            
         // update bounds
         bounds = {size};
 
@@ -22,5 +32,10 @@ namespace Parachute
                 }
             }
         }
+    }
+
+    void Object::Delete()
+    {
+        shouldBeDeleted = true;
     }
 }

@@ -42,6 +42,10 @@ namespace Parachute
     void Text::Update()
     {
         Object::Update();
+        
+        if (shouldBeDeleted){
+            return;
+        }
 
         if (visible)
         {
@@ -62,6 +66,8 @@ namespace Parachute
 
     void Text::SetTextData()
     {
+        if (ShouldRun() == false)
+            return;
         textObj->setString(text);
         textObj->setCharacterSize(textSize);
         textObj->setFillColor(color);

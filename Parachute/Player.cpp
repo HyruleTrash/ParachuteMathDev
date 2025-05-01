@@ -19,6 +19,11 @@ namespace Parachute
 
     void Player::Update()
     {
+        if (shouldBeDeleted){
+            delete this;
+            return;
+        }
+        
         if (visible)
         {
             // handle user inputs

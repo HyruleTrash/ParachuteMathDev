@@ -1,5 +1,7 @@
 #include "ObjectManager.h"
 
+#include <vector>
+
 namespace Parachute
 {
     using Vector2 = MathUtil::Vector2;
@@ -14,24 +16,43 @@ namespace Parachute
 
     void ObjectManager::Update()
     {
+        // Check for collisions
+        collisionSystem.Update(std::vector<Object *>{objects});
         // Run rendering and physics logics per object
         for (Object *object : objects)
         {
-            object->Update();
+            if (object != nullptr && object->ShouldRun())
+                object->Update();
         }
-        // Check for collisions
-        collisionSystem.Update(std::vector<Object *>{objects});
 
-        // cleanup any objects that need to be deleted
+        CleanObjectsToBeDeleted();
+    }
+
+    // cleanup any objects that need to be deleted
+    void ObjectManager::CleanObjectsToBeDeleted()
+    {
         for (int i = objects.size() - 1; i >= 0; i--)
         {
-            for (Object *toBeDeleted : objectsToBeDeleted)
+            for (int j = objectsToBeDeleted.size() - 1; j >= 0; j--)
             {
-                if (toBeDeleted == objects[i])
-                    objects.erase(objects.begin() + i);
+                Object& candidateObj = *objects[i];
+                Object& toBeDeleted = *objectsToBeDeleted[j];
+                if (&toBeDeleted == &candidateObj)
+                {
+                    RemoveFromObjectVector(objects, objects[i]);
+                    RemoveFromObjectVector(objectsToBeDeleted, objectsToBeDeleted[j]);
+                    candidateObj.Delete();
+                }
             }
         }
-        objectsToBeDeleted.clear();
+    }
+
+    void ObjectManager::RemoveFromObjectVector(std::vector<Object *>& list, Object* toRemove)
+    {
+        auto it = std::find(list.begin(), list.end(), toRemove);
+        if (it != list.end()) {
+            list.erase(it);
+        }
     }
 
     /// @brief Tells the manager that all current objects need to be deleted later

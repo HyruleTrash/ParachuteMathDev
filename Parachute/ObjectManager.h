@@ -17,6 +17,8 @@ namespace Parachute
         ObjectManager() = default;
         ~ObjectManager();
         void Update();
+        void CleanObjectsToBeDeleted();
+        void RemoveFromObjectVector(std::vector<Object*>& list, Object* toRemove);
         void ClearObjects();
         void Delete(Object *);
         void Initialize(Object *object);

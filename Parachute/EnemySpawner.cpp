@@ -17,6 +17,11 @@ namespace Parachute
     {
         Object::Update();
 
+        if (shouldBeDeleted){
+            delete this;
+            return;
+        }
+
         // when enebled increment a timer variable in till it passes a threshold.
         if (visible)
         {

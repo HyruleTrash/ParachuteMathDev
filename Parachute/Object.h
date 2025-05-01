@@ -12,12 +12,15 @@ namespace Parachute
     /// @brief Game object, used to keep track of all in game objects
     class Object
     {
-    private:
+    protected:
+        bool shouldBeDeleted = false;
     public:
         Object() = default;
         ~Object() = default;
+        bool ShouldRun();
         virtual void Update();
         virtual GameState GetGameState() { return GameState::Start; };
+        void Delete();
         bool visible{true};
         bool checkGameState{true};
         Game *game;

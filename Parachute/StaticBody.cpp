@@ -13,6 +13,11 @@ namespace Parachute
     void StaticBody::Update()
     {
         Body::Update();
+
+        if (shouldBeDeleted){
+            delete this;
+            return;
+        }
     }
 
     /// @brief returns infinity, for nothing can pass through a static body
