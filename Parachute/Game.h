@@ -16,9 +16,9 @@ namespace Parachute
     private:
         void GetInputs();
         MathUtil::Vector2 resolution;
-        double points{0};
-        double totalPoints{0};
-        constexpr static double HIGH_SCORE{200};
+        float points{0};
+        float totalPoints{0};
+        constexpr static float HIGH_SCORE{200};
         Object *pointCounterObject;
 
     public:

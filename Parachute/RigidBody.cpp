@@ -9,6 +9,12 @@ namespace Parachute
 
     void RigidBody::Update()
     {
+        if (shouldBeDeleted)
+        {
+            delete this;
+            return;
+        }
+        
         // // if it has a mass, and is supposed to be moving
         if (mass != 0 && ((forces.GetMagnitude() != 0 || impulses.GetMagnitude() != 0) || velocity != Vector2::ZERO))
         {

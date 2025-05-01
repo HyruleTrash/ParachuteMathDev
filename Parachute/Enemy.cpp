@@ -31,6 +31,12 @@ namespace Parachute
     {
         RigidBody::Update();
 
+        if (shouldBeDeleted)
+        {
+            delete this;
+            return;
+        }
+
         // move down
         AddForce(Vector2::DOWN * speed.y);
 
