@@ -1,0 +1,150 @@
+﻿  Physics.cpp
+  Util.cpp
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\MathUtil\Util.cpp(90,50): warning C4244: 'argument': conversion from 'double' to '_Ty', possible loss of data
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\MathUtil\Util.cpp(90,50): warning C4244:         with
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\MathUtil\Util.cpp(90,50): warning C4244:         [
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\MathUtil\Util.cpp(90,50): warning C4244:             _Ty=int
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\MathUtil\Util.cpp(90,50): warning C4244:         ]
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\MathUtil\Util.cpp(90,45): warning C4244: 'argument': conversion from 'double' to '_Ty', possible loss of data
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\MathUtil\Util.cpp(90,45): warning C4244:         with
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\MathUtil\Util.cpp(90,45): warning C4244:         [
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\MathUtil\Util.cpp(90,45): warning C4244:             _Ty=int
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\MathUtil\Util.cpp(90,45): warning C4244:         ]
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\MathUtil\Util.cpp(101,29): warning C4018: '<': signed/unsigned mismatch
+  Vector2.cpp
+  ParachuteTwo.cpp
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
+  (compiling source file 'ParachuteTwo.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\stdexcept(100,19):
+      see declaration of 'std::runtime_error'
+      C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,23):
+      see declaration of 'sf::Exception'
+  
+  Body.cpp
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
+  (compiling source file 'Parachute/Body.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\stdexcept(100,19):
+      see declaration of 'std::runtime_error'
+      C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,23):
+      see declaration of 'sf::Exception'
+  
+  Bounds.cpp
+  CollisionSystem.cpp
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
+  (compiling source file 'Parachute/CollisionSystem.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\stdexcept(100,19):
+      see declaration of 'std::runtime_error'
+      C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,23):
+      see declaration of 'sf::Exception'
+  
+  CollisionTest.cpp
+  CollisionTestResult.cpp
+  Enemy.cpp
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
+  (compiling source file 'Parachute/Enemy.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\stdexcept(100,19):
+      see declaration of 'std::runtime_error'
+      C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,23):
+      see declaration of 'sf::Exception'
+  
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Parachute\StaticBody.h(16,26): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Parachute/Enemy.cpp')
+  
+  EnemyDeathTrigger.cpp
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
+  (compiling source file 'Parachute/EnemyDeathTrigger.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\stdexcept(100,19):
+      see declaration of 'std::runtime_error'
+      C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,23):
+      see declaration of 'sf::Exception'
+  
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Parachute\StaticBody.h(16,26): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Parachute/EnemyDeathTrigger.cpp')
+  
+  EnemySpawner.cpp
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
+  (compiling source file 'Parachute/EnemySpawner.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\stdexcept(100,19):
+      see declaration of 'std::runtime_error'
+      C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,23):
+      see declaration of 'sf::Exception'
+  
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Parachute\StaticBody.h(16,26): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Parachute/EnemySpawner.cpp')
+  
+  Game.cpp
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
+  (compiling source file 'Parachute/Game.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\stdexcept(100,19):
+      see declaration of 'std::runtime_error'
+      C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,23):
+      see declaration of 'sf::Exception'
+  
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Parachute\StaticBody.h(16,26): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Parachute/Game.cpp')
+  
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Parachute\Game.cpp(108,36): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Parachute\Game.cpp(108,36): warning C4305: 'initializing': truncation from 'double' to 'const float'
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Parachute\Game.cpp(157,19): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+  Input.cpp
+  InputManager.cpp
+  IntersectionData.cpp
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
+  (compiling source file 'Parachute/IntersectionData.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\stdexcept(100,19):
+      see declaration of 'std::runtime_error'
+      C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,23):
+      see declaration of 'sf::Exception'
+  
+  Object.cpp
+  ObjectManager.cpp
+  Player.cpp
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
+  (compiling source file 'Parachute/Player.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\stdexcept(100,19):
+      see declaration of 'std::runtime_error'
+      C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,23):
+      see declaration of 'sf::Exception'
+  
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Parachute\StaticBody.h(16,26): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Parachute/Player.cpp')
+  
+  RigidBody.cpp
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
+  (compiling source file 'Parachute/RigidBody.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\stdexcept(100,19):
+      see declaration of 'std::runtime_error'
+      C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,23):
+      see declaration of 'sf::Exception'
+  
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Parachute\StaticBody.h(16,26): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Parachute/RigidBody.cpp')
+  
+  Compiling...
+  StaticBody.cpp
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
+  (compiling source file 'Parachute/StaticBody.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\stdexcept(100,19):
+      see declaration of 'std::runtime_error'
+      C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,23):
+      see declaration of 'sf::Exception'
+  
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Parachute\StaticBody.h(16,26): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'Parachute/StaticBody.cpp')
+  
+  Text.cpp
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
+  (compiling source file 'Parachute/Text.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\stdexcept(100,19):
+      see declaration of 'std::runtime_error'
+      C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Include\SFML\System\Exception.hpp(41,23):
+      see declaration of 'sf::Exception'
+  
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Parachute\Text.cpp(72,35): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+  Time.cpp
+C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Parachute\Time.cpp(14,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating code
+  Previous IPDB was built with incompatible compiler, fall back to full compilation.
+  All 820 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  ParachuteTwo.vcxproj -> C:\Users\Lucas\Documents\School\HKU\MathDev\ParachuteTwo\Release\ParachuteTwo.exe
